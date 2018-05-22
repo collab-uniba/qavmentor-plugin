@@ -1,0 +1,19 @@
+.plugin_div {
+    position: absolute !important;
+    left: 580px;
+    bottom: 50px;
+}
+.round_button {
+  font-family: arial;
+  color: #FFFFFF !important;
+  font-size: 16px;
+  padding: 4px 4px;
+  -moz-border-radius: 40px;
+  -webkit-border-radius: 40px;
+  border-radius: 40px;
+  background: #63B8EE;
+}
+.round_button:hover {
+  color: #FAFDFF !important;
+  background: #00D5FF;
+}

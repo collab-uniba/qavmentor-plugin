@@ -1,0 +1,17 @@
+
+{
+  "manifest_version": 2,
+  "name": "React Content Script",
+  "version": "0.0.1",
+  "description": "React Content Script",
+  "content_scripts": [
+    {
+      "matches": ["https://stackoverflow.com/questions/ask"],
+      "css": ["/static/css/main.css"],
+      "js": ["/static/js/main.js"],
+
+      "run_at": "document_end"
+
+    }
+  ]
+}
