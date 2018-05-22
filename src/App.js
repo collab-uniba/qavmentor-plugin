@@ -35,7 +35,7 @@ class App extends Component
                        onMouseLeave={this.handleMouseHover}>
 
 
-        <a  href="https://www.youtube.com/watch?v=oHg5SJYRHA0">
+        <a  href="">
                  {!this.state.isHovering && <div>80</div>}
                  {this.state.isHovering && <div>CodeSnippet: { this.state.CodeSnippet }, BodyLength: { this.state.BodyLength }, TitleLength: { this.state.TitleLength },
                                         SentimentScore: { this.state.SentimentScore }, Ntag: { this.state.Ntag }, AvgUpperCharsPPost: { this.state.AvgUpperCharsPPost },
