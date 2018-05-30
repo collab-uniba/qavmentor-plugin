@@ -27,6 +27,14 @@ class App extends Component
     // CodeSnippet: { this.state.CodeSnippet }, BodyLength: { this.state.BodyLength }, TitleLength: { this.state.TitleLength },
     //                        SentimentScore: { this.state.SentimentScore }, Ntag: { this.state.Ntag }, AvgUpperCharsPPost: { this.state.AvgUpperCharsPPost },
     //                        url: { this.state.url }, WeekDay: {this.state.Weekday}, DayTime: {this.state.GMTHour}
+
+    // {this.state.isHovering && <div>CodeSnippet: { this.state.CodeSnippet }, BodyLength: { this.state.BodyLength }, TitleLength: { this.state.TitleLength },
+    //                        SentimentScore: { this.state.SentimentScore }, Ntag: { this.state.Ntag }, AvgUpperCharsPPost: { this.state.AvgUpperCharsPPost },
+    //                        url: { this.state.url }, WeekDay: {this.state.Weekday}, DayTime: {this.state.GMTHour} </div>}
+
+    // {!this.state.isHovering && <div>{ this.state.prediction }</div>}
+
+
   render() {
 
     return (
@@ -36,10 +44,8 @@ class App extends Component
 
 
         <a  href="">
-                 {!this.state.isHovering && <div>80</div>}
-                 {this.state.isHovering && <div>CodeSnippet: { this.state.CodeSnippet }, BodyLength: { this.state.BodyLength }, TitleLength: { this.state.TitleLength },
-                                        SentimentScore: { this.state.SentimentScore }, Ntag: { this.state.Ntag }, AvgUpperCharsPPost: { this.state.AvgUpperCharsPPost },
-                                        url: { this.state.url }, WeekDay: {this.state.Weekday}, DayTime: {this.state.GMTHour} </div>}
+          <div>{ this.state.prediction }</div>
+
         </a>
       </div>
 
@@ -62,7 +68,7 @@ class App extends Component
         html_question = document.getElementById('wmd-preview')
 
       var date = new Date()
-
+      console.log((date.getHours()).toString())
       axios.post('http://127.0.0.1:5000/analyze', {
                                                     "day": (date.getDay()).toString(),
                                                     "hour": (date.getHours()).toString(),
@@ -71,24 +77,24 @@ class App extends Component
                                                     "tags": tag.value.split(" ")
                                                   })
         .then( (response) => {
-          var global_sentiment = ''
-          Object.keys(response.data.SentimentScore).forEach(function (key)
-          {
-             if(response.data.SentimentScore[key]===true)
-              global_sentiment = key
-          });
+          // var global_sentiment = ''
+          // Object.keys(response.data.SentimentScore).forEach(function (key)
+          // {
+          //    if(response.data.SentimentScore[key]===true)
+          //     global_sentiment = key
+          // });
 
           this.setState({
-
-          		CodeSnippet: response.data.CodeSnippet.toString(),
-          		BodyLength: response.data.BodyLength,
-          		TitleLength: response.data.TitleLength,
-              Weekday: response.data.Weekday,
-              GMTHour: response.data.GMTHour,
-          		SentimentScore: global_sentiment,
-          		Ntag: response.data.Ntag.toString(),
-          		AvgUpperCharsPPost: response.data.AvgUpperCharsPPost,
-          		url: response.data.URL.toString()
+              prediction: response.data.prediction
+          		// CodeSnippet: response.data.CodeSnippet.toString(),
+          		// BodyLength: response.data.BodyLength,
+          		// TitleLength: response.data.TitleLength,
+              // Weekday: response.data.Weekday,
+              // GMTHour: response.data.GMTHour,
+          		// SentimentScore: global_sentiment,
+          		// Ntag: response.data.Ntag.toString(),
+          		// AvgUpperCharsPPost: response.data.AvgUpperCharsPPost,
+          		// url: response.data.URL.toString()
 
           });
         })
