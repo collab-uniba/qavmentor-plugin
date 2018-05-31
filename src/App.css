@@ -1,8 +1,17 @@
-.plugin_div {
+.plugin_div_body {
     position: absolute !important;
-    left: 580px;
-    bottom: 50px;
+    left: 630px;
+    bottom: 30px;
 }
+
+
+.plugin_div_title {
+    position: absolute !important;
+    left: 630px;
+    bottom: 25px;
+}
+
+
 .round_button {
   font-family: arial;
   color: #FFFFFF !important;
