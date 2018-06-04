@@ -2,11 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import axios from 'axios';
 
-
-
-// var percentage = -1
 
 const question_body = document.getElementById('wmd-input');
 const title = document.getElementById('title');
@@ -15,8 +11,6 @@ const plugin_button = document.createElement('div');
 
 plugin_button.id = 'root';
 
-
-// ReactDOM.render(<App attached_to="tags" my_style="tags" percentage={percentage}/> , document.getElementById('root'));
 
 
 question_body.onfocus = function()
@@ -52,10 +46,6 @@ title.onblur = function()
 
 
 
-
-
-
-
 window.onload = function() {
   // make_request()
 
@@ -81,42 +71,3 @@ window.onload = function() {
   }
 
 };
-
-
-
-
-
-//
-//
-// var make_request = function()
-// {
-//   console.log('making request from index')
-//   var html_question = document.getElementById('wmd-preview')
-//   var title = document.getElementById('title');
-//   var tag = document.getElementById('tagnames');
-//
-//
-//   var html_question_inner = ''
-//   if(html_question)
-//     html_question_inner = html_question.innerHTML
-//   else
-//     html_question = document.getElementById('wmd-preview')
-//   var date = new Date()
-//
-//   axios.post('http://127.0.0.1:5000/analyze',
-//   {
-//       "day": (date.getDay()).toString(),
-//       "hour": (date.getHours()).toString(),
-//       "body": html_question_inner,
-//       "title":title.value,
-//       "tags": tag.value.split(" ")
-//   })
-//     .then( (response) => {
-//
-//         percentage = parseInt(parseFloat(response.data.prediction)*100)
-//
-//     })
-//     .catch( (error) => {
-//       // console.log(error);
-//     });
-// }

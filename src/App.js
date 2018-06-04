@@ -87,21 +87,26 @@ class App extends Component
 
 
   componentDidMount() {
-    console.log(this.props.attached_to + "  mounted")
-    this.request()
 
-    var mounted_on = this.props.attached_to
-    var att = document.getElementById(mounted_on)
-    att.onkeydown = function()
-      {
-        console.log("___________keydown on "+mounted_on+"___________")
-        clearTimeout(this.timer);
-        this.timer = setTimeout(function()
+    window.onload()
+    {
+      console.log(this.props.attached_to + "  mounted")
+      this.request()
+
+      var mounted_on = this.props.attached_to
+      var att = document.getElementById(mounted_on)
+      att.onkeydown = function()
         {
-            this.request()
+          console.log("___________keydown on "+mounted_on+"___________")
+          clearTimeout(this.timer);
+          this.timer = setTimeout(function()
+          {
+              this.request()
 
-        }.bind(this), 500)
-      }.bind(this)
+          }.bind(this), 500)
+        }.bind(this)
+    }
+
   }
 
 
