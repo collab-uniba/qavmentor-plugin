@@ -88,7 +88,7 @@ class App extends Component
 
   componentDidMount() {
 
-    window.onload()
+    window.onload = function()
     {
       console.log(this.props.attached_to + "  mounted")
       this.request()
