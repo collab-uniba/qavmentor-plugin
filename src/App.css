@@ -1,18 +1,35 @@
 .plugin_div_body {
     position: absolute !important;
-    left: 630px;
+    left: 600px;
     bottom: 30px;
 }
 
 
 .plugin_div_title {
     position: absolute !important;
-    left: 630px;
-    bottom: 25px;
+    left: 600px;
+    bottom: 20px;
 }
 
+.plugin_div_title_suggestion {
+    position: absolute !important;
+    left: 600px;
+    bottom: 215px;
+}
 
-.round_button {
+.plugin_div_tags {
+    position: absolute !important;
+    left: 600px;
+    bottom: -2px;
+}
+
+.percentage{
+  position: absolute !important;
+  left: 7px;
+  bottom: 11px;
+}
+
+/*.round_button {
   font-family: arial;
   color: #FFFFFF !important;
   font-size: 16px;
@@ -25,4 +42,4 @@
 .round_button:hover {
   color: #FAFDFF !important;
   background: #00D5FF;
-}
+}*/
