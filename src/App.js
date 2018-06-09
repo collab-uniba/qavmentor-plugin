@@ -13,8 +13,10 @@ class App extends Component
   constructor(props) {
     console.log('constructor')
     super(props);
-    this.timer = null;
+    this.timer = null
     this.state = {
+      "max_req": 100,
+      "n_req_made": 0,
       "attached_to": props.attached_to,
       "my_style": props.my_style,
       "prediction": props.percentage
@@ -51,12 +53,17 @@ class App extends Component
         .then( (response) => {
             console.log("RESPONSE> "+ response.data.prediction)
             this.setState({
+              n_req_made: 0,
               prediction: parseInt(parseFloat(response.data.prediction)*100)
             })
         })
         .catch( (error) => {
           console.log('request failed, trying again ... ')
-          this.request()
+          if(this.state.n_req_made < this.state.max_req)
+          {
+            this.state.n_req_made += 1
+            this.request()
+          }
         });
     }
 
@@ -74,7 +81,6 @@ class App extends Component
 
     return (
       <div className={"plugin_div_" +this.state.my_style }>
-
         <div>
             {prediction_div}
         </div>
@@ -87,9 +93,6 @@ class App extends Component
 
 
   componentDidMount() {
-
-    window.onload = function()
-    {
       console.log(this.props.attached_to + "  mounted")
       this.request()
 
@@ -105,7 +108,7 @@ class App extends Component
 
           }.bind(this), 500)
         }.bind(this)
-    }
+
 
   }
 
