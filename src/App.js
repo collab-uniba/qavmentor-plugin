@@ -1,129 +1,81 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { withStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Tip from './Components/Tip/Tip.js'
+import PluginButton from './Components/PluginButton/PluginButton.js'
+import ReactDOM from 'react-dom';
 
-
-
-
-import './App.css';
 
 class App extends Component
 {
-  constructor(props) {
-    // console.log('constructor')
-    super(props);
-    this.timer = null
-    this.state = {
-      "max_req": 100,
-      "n_req_made": 0,
-      "attached_to": props.attached_to,
-      "my_style": props.my_style,
-      "prediction": props.percentage
-    };
-
-    this.request =   function()
-    {
-      // console.log('making request from '+ this.props.attached_to)
-      var html_question = document.getElementById('wmd-preview')
-      var title = document.getElementById('title');
-      var tag = document.getElementById('tagnames');
-
-
-      var html_question_inner = ''
-      if(html_question)
-        html_question_inner = html_question.innerHTML
-      else
-        html_question = document.getElementById('wmd-preview')
-      var date = new Date()
-
-
-      this.setState({
-        prediction: -1
-      })
-
-      axios.post('http://127.0.0.1:5000/analyze',
-      {
-          "day": (date.getDay()).toString(),
-          "hour": (date.getHours()).toString(),
-          "body": html_question_inner,
-          "title":title.value,
-          "tags": tag.value.split(" ")
-      })
-        .then( (response) => {
-            // console.log("RESPONSE> "+ response.data.prediction)
-            this.setState({
-              n_req_made: 0,
-              prediction: parseInt(parseFloat(response.data.prediction)*100)
-            })
-        })
-        .catch( (error) => {
-          // console.log('request failed, trying again ... ')
-          if(this.state.n_req_made < this.state.max_req)
-          {
-            this.state.n_req_made += 1
-            this.request()
-          }
-        });
-    }
-
-  }
-
-
-
-
-  render() {
-    var prediction_div
-    if(this.state.prediction === -1 || !this.state.prediction)
-      prediction_div = (<div><CircularProgress size={30} /><div className="percentage"></div></div>)
-    else
-      prediction_div = (<div><CircularProgress variant="static" value={ this.state.prediction } size={30} /><div className="percentage">{ this.state.prediction }</div></div>)
-
-    return (
-      <div className={"plugin_div_" +this.state.my_style }>
-        <div>
-            {prediction_div}
-        </div>
-      </div>
-
-    );
-  }
-
-
-
+  render(){return(<div></div>)}
 
   componentDidMount() {
-      // console.log(this.props.attached_to + "  mounted")
-      this.request()
+        const question_body = document.getElementById('wmd-input');
+        const title = document.getElementById('title');
+        const tags = document.getElementsByClassName("tag-editor")[0].childNodes[1]
+        const plugin_button = document.createElement('div');
+        const content = document.getElementsByTagName('header')[0]
 
-      var mounted_on = this.props.attached_to
-      var att = document.getElementById(mounted_on)
-      att.onkeydown = function()
+        tags.id = 'tags'
+        plugin_button.id = 'plugin_button';
+
+        const tip = document.createElement('div');
+        tip.id = 'tip';
+
+
+        content.appendChild(tip);
+        ReactDOM.render(<Tip/>, document.getElementById('tip'));
+
+
+        question_body.onfocus = function()
         {
-          // console.log("___________keydown on "+mounted_on+"___________")
-          clearTimeout(this.timer);
-          this.timer = setTimeout(function()
-          {
-              this.request()
+            question_body.parentNode.insertBefore(plugin_button, question_body.nextSibling);
+            ReactDOM.render(<PluginButton attached_to="wmd-input" my_style="body"/>, document.getElementById('plugin_button'));
+        }
 
-          }.bind(this), 500)
-        }.bind(this)
+        question_body.onblur = function()
+        {
+            // console.log("unmounting body")
+            ReactDOM.unmountComponentAtNode(document.getElementById('plugin_button'));
+        }
 
+
+        title.onfocus = function()
+        {
+            title.parentNode.insertBefore(plugin_button, title.nextSibling);
+            if(document.getElementById('question-suggestions').childNodes.length === 1)
+            ReactDOM.render(<PluginButton attached_to="title" my_style="title" /> , document.getElementById('plugin_button'));
+            else
+            ReactDOM.render(<PluginButton attached_to="title" my_style="title_suggestion" /> , document.getElementById('plugin_button'));
+
+        }
+
+        title.onblur = function()
+        {
+            // console.log("unmounting title")
+            ReactDOM.unmountComponentAtNode(document.getElementById('plugin_button'));
+        }
+
+
+
+        tags.onfocus = function()
+        {
+            // make_request()
+            tags.parentNode.insertBefore(plugin_button, tags.nextSibling);
+            if(document.getElementById('question-suggestions').childNodes.length === 1)
+            ReactDOM.render(<PluginButton attached_to="tags" my_style="tags" /> , document.getElementById('plugin_button'));
+            else
+            ReactDOM.render(<PluginButton attached_to="tags" my_style="tags" /> , document.getElementById('plugin_button'));
+
+        }
+
+        tags.onblur = function()
+        {
+            // console.log("unmounting tags")
+            ReactDOM.unmountComponentAtNode(document.getElementById('plugin_button'));
+        }
 
   }
 
-
-  componentWillUnmount(){
-    // console.log("unmounting "+ this.props.attached_to)
-    clearInterval(this.timer)
-  }
-
-
-
-
-
-
-
-}
+};
 
 export default App;
