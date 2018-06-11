@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Tip from './Components/Tip/Tip.js'
-import PluginButton from './Components/PluginButton/PluginButton.js'
+import Tip from './Tip/Tip.js'
+import PluginButton from './PluginButton/PluginButton.js'
 import ReactDOM from 'react-dom';
 
 

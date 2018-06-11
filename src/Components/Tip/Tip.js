@@ -1,12 +1,13 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-import axios from 'axios';
+import store from '../../store';
+import {getTips} from '../../services';
+import {getPost} from '../../utils'
 
 class Tip extends React.Component {
 
-  constructor(props)
-  {
+  constructor(props) {
     super(props);
     this.timer = null
     this.state = {
@@ -16,55 +17,6 @@ class Tip extends React.Component {
       "open": false
     }
 
-    this.request =   function(){
-      var html_question = document.getElementById('wmd-preview')
-      var title = document.getElementById('title');
-      var tag = document.getElementById('tagnames');
-
-
-      var html_question_inner = ''
-      if(html_question)
-        html_question_inner = html_question.innerHTML
-      else
-        html_question = document.getElementById('wmd-preview')
-      var date = new Date()
-
-
-      axios.post('http://127.0.0.1:5000/getTip',
-      {
-          "day": (date.getDay()).toString(),
-          "hour": (date.getHours()).toString(),
-          "body": html_question_inner,
-          "title":title.value,
-          "tags": tag.value.split(" ")
-      })
-        .then( (response) => {
-            if(response.data.length > 0)
-            {
-              var tip = null
-              for (var i = 0; i < response.data.length; i++) {
-                 if (!this.state.closed_tips.includes(response.data[i].tip_index))
-                  tip = response.data[i]
-              }
-              if(tip != null)
-              {
-                this.setState({
-                  open:true,
-                  message: tip.msg,
-                  current_tip: tip.tip_index
-                })
-              }
-
-            }
-        })
-        .catch( (error) => {
-          if(this.state.n_req_made < this.state.max_req)
-          {
-            this.state.n_req_made += 1
-            this.request()
-          }
-        });
-    }
   }
 
 
@@ -97,26 +49,62 @@ class Tip extends React.Component {
               </Button>
             }
           />
-
     );
   }
 
 
-    componentDidMount() {
-        this.request()
-        window.onkeydown = function()
+  componentDidMount() {
+    getTips(getPost()).then(data => {
+      if(data.length > 0)
+      {
+        var tip = null
+        for (var i = 0; i < data.length; i++) {
+           if (!this.state.closed_tips.includes(data[i].tip_index))
+            tip = data[i]
+        }
+        if(tip != null)
+        {
+          this.setState({
+            open:true,
+            message: tip.msg,
+            current_tip: tip.tip_index
+          })
+          store.tips = this.state.closed_tips
+        }
+
+      }
+    })
+
+    window.onkeydown = function()
+    {
+       this.setState({open: false})
+
+      clearTimeout(this.timer);
+      this.timer = setTimeout(function()
+      {
+        getTips(getPost()).then(data => {
+          if(data.length > 0)
           {
-             this.setState({open: false})
-
-            clearTimeout(this.timer);
-            this.timer = setTimeout(function()
+            var tip = null
+            for (var i = 0; i < data.length; i++) {
+               if (!this.state.closed_tips.includes(data[i].tip_index))
+                tip = data[i]
+            }
+            if(tip != null)
             {
-                this.request()
+              this.setState({
+                open:true,
+                message: tip.msg,
+                current_tip: tip.tip_index
+              })
+              store.tips = this.state.closed_tips
+            }
 
-            }.bind(this), 500)
-          }.bind(this)
-    }
-
+          }
+        })
+      }.bind(this), 500)
+    }.bind(this)
+  }
 
 }
 
