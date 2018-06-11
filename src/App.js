@@ -11,7 +11,7 @@ import './App.css';
 class App extends Component
 {
   constructor(props) {
-    console.log('constructor')
+    // console.log('constructor')
     super(props);
     this.timer = null
     this.state = {
@@ -24,7 +24,7 @@ class App extends Component
 
     this.request =   function()
     {
-      console.log('making request from '+ this.props.attached_to)
+      // console.log('making request from '+ this.props.attached_to)
       var html_question = document.getElementById('wmd-preview')
       var title = document.getElementById('title');
       var tag = document.getElementById('tagnames');
@@ -51,14 +51,14 @@ class App extends Component
           "tags": tag.value.split(" ")
       })
         .then( (response) => {
-            console.log("RESPONSE> "+ response.data.prediction)
+            // console.log("RESPONSE> "+ response.data.prediction)
             this.setState({
               n_req_made: 0,
               prediction: parseInt(parseFloat(response.data.prediction)*100)
             })
         })
         .catch( (error) => {
-          console.log('request failed, trying again ... ')
+          // console.log('request failed, trying again ... ')
           if(this.state.n_req_made < this.state.max_req)
           {
             this.state.n_req_made += 1
@@ -93,14 +93,14 @@ class App extends Component
 
 
   componentDidMount() {
-      console.log(this.props.attached_to + "  mounted")
+      // console.log(this.props.attached_to + "  mounted")
       this.request()
 
       var mounted_on = this.props.attached_to
       var att = document.getElementById(mounted_on)
       att.onkeydown = function()
         {
-          console.log("___________keydown on "+mounted_on+"___________")
+          // console.log("___________keydown on "+mounted_on+"___________")
           clearTimeout(this.timer);
           this.timer = setTimeout(function()
           {
@@ -114,7 +114,7 @@ class App extends Component
 
 
   componentWillUnmount(){
-    console.log("unmounting "+ this.props.attached_to)
+    // console.log("unmounting "+ this.props.attached_to)
     clearInterval(this.timer)
   }
 

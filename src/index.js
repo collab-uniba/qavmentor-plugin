@@ -31,7 +31,7 @@ window.onload = function() {
 
     question_body.onblur = function()
     {
-        console.log("unmounting body")
+        // console.log("unmounting body")
         ReactDOM.unmountComponentAtNode(document.getElementById('plugin_button'));
     }
 
@@ -48,7 +48,7 @@ window.onload = function() {
 
     title.onblur = function()
     {
-        console.log("unmounting title")
+        // console.log("unmounting title")
         ReactDOM.unmountComponentAtNode(document.getElementById('plugin_button'));
     }
 
@@ -67,7 +67,7 @@ window.onload = function() {
 
     tags.onblur = function()
     {
-        console.log("unmounting tags")
+        // console.log("unmounting tags")
         ReactDOM.unmountComponentAtNode(document.getElementById('plugin_button'));
     }
 
