@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Tip from './Tip/Tip.js'
-import PluginButton from './PluginButton/PluginButton.js'
+import PluginTip from './PluginTip/PluginTip.js'
 import ReactDOM from 'react-dom';
 
 
@@ -9,14 +9,20 @@ class App extends Component
   render(){return(<div></div>)}
 
   componentDidMount() {
-        const question_body = document.getElementById('wmd-input');
-        const title = document.getElementById('title');
-        const tags = document.getElementsByClassName("tag-editor")[0].childNodes[1]
-        const plugin_button = document.createElement('div');
-        const content = document.getElementsByTagName('header')[0]
+        const body_id = 'wmd-input';
+        const title_id = 'title';
+        const tags_id = 'tag-editor';
+        const content_id = 'header';
+
+        const body = document.getElementById(body_id);
+        const title = document.getElementById(title_id);
+        const tags = document.getElementsByClassName(tags_id)[0].childNodes[1]
+        const content = document.getElementsByTagName(content_id)[0]
+
+        const plugin_tips = document.createElement('div');
 
         tags.id = 'tags'
-        plugin_button.id = 'plugin_button';
+        plugin_tips.id = 'plugin_tips';
 
         const tip = document.createElement('div');
         tip.id = 'tip';
@@ -25,54 +31,58 @@ class App extends Component
         content.appendChild(tip);
         ReactDOM.render(<Tip/>, document.getElementById('tip'));
 
+        var rendering_on
 
-        question_body.onfocus = function()
+        body.onfocus = function()
         {
-            question_body.parentNode.insertBefore(plugin_button, question_body.nextSibling);
-            ReactDOM.render(<PluginButton attached_to="wmd-input" my_style="body"/>, document.getElementById('plugin_button'));
+            // if(!document.getElementById('plugin_tips') || document.getElementById('plugin_tips').childNodes.length > 0)
+            //   ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+            body.parentNode.insertBefore(plugin_tips, body.nextSibling);
+            ReactDOM.render(<PluginTip attached_to={body_id} my_style={body_id}/>, document.getElementById('plugin_tips'));
         }
 
-        question_body.onblur = function()
-        {
-            // console.log("unmounting body")
-            ReactDOM.unmountComponentAtNode(document.getElementById('plugin_button'));
-        }
+        // body.onblur = function()
+        // {
+        //     // console.log("unmounting body")
+        //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+        // }
 
 
         title.onfocus = function()
         {
-            title.parentNode.insertBefore(plugin_button, title.nextSibling);
+          // if(!document.getElementById('plugin_tips') || document.getElementById('plugin_tips').childNodes.length > 0)
+          //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+            title.parentNode.insertBefore(plugin_tips, title.nextSibling);
             if(document.getElementById('question-suggestions').childNodes.length === 1)
-            ReactDOM.render(<PluginButton attached_to="title" my_style="title" /> , document.getElementById('plugin_button'));
+            ReactDOM.render(<PluginTip attached_to={title_id} my_style={title_id} /> , document.getElementById('plugin_tips'));
             else
-            ReactDOM.render(<PluginButton attached_to="title" my_style="title_suggestion" /> , document.getElementById('plugin_button'));
+            ReactDOM.render(<PluginTip attached_to={title_id} my_style="title_suggestion" /> , document.getElementById('plugin_tips'));
 
         }
 
-        title.onblur = function()
-        {
-            // console.log("unmounting title")
-            ReactDOM.unmountComponentAtNode(document.getElementById('plugin_button'));
-        }
+        // title.onblur = function()
+        // {
+        //     // console.log("unmounting title")
+        //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+        // }
 
 
 
         tags.onfocus = function()
         {
-            // make_request()
-            tags.parentNode.insertBefore(plugin_button, tags.nextSibling);
-            if(document.getElementById('question-suggestions').childNodes.length === 1)
-            ReactDOM.render(<PluginButton attached_to="tags" my_style="tags" /> , document.getElementById('plugin_button'));
-            else
-            ReactDOM.render(<PluginButton attached_to="tags" my_style="tags" /> , document.getElementById('plugin_button'));
+          // if(!document.getElementById('plugin_tips') || document.getElementById('plugin_tips').childNodes.length > 0)
+          //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+            ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+            tags.parentNode.insertBefore(plugin_tips, tags.nextSibling);
+            ReactDOM.render(<PluginTip attached_to={tags_id} my_style={tags_id} /> , document.getElementById('plugin_tips'));
 
         }
-
-        tags.onblur = function()
-        {
-            // console.log("unmounting tags")
-            ReactDOM.unmountComponentAtNode(document.getElementById('plugin_button'));
-        }
+        // 
+        // tags.onblur = function()
+        // {
+        //     // console.log("unmounting tags")
+        //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+        // }
 
   }
 

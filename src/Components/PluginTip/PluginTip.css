@@ -1,0 +1,63 @@
+.plugin_div_wmd-input {
+    position: absolute !important;
+    left: 600px;
+    bottom: 30px;
+}
+
+
+.plugin_div_title {
+    position: absolute !important;
+    left: 600px;
+    bottom: 20px;
+}
+
+.plugin_div_title_suggestion {
+    position: absolute !important;
+    left: 600px;
+    bottom: 215px;
+}
+
+.plugin_div_tag-editor {
+    position: absolute !important;
+    left: 600px;
+    bottom: -2px;
+}
+
+
+.round_button {
+  font-family: arial;
+  color: #FFFFFF !important;
+  font-size: 16px;
+  padding: 4px 4px;
+  -moz-border-radius: 40px;
+  -webkit-border-radius: 40px;
+  border-radius: 40px;
+  background: #3f51b5;
+}
+.round_button:hover {
+  color: #FAFDFF !important;
+  background: #5b5bda;
+}
+
+
+.round-close-button {
+    padding: 15px 15px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+
+}
+.round-close-button:hover {
+  background: #5b5bda;
+  box-shadow: none;
+  border: none;
+}
+
+.round-close-button:focus {
+  background: #6e6ee4;
+  box-shadow: none;
+  border: none;
+}
