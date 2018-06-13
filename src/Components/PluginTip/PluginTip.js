@@ -14,6 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import Paper from '@material-ui/core/Paper';
 
 import store from '../../store';
 
@@ -91,31 +92,36 @@ class PluginTip extends Component
             </div>
 
             <Dialog
-              //fullScreen
+              // fullScreen
               open={this.state.open}
               onClose={this.handleClose}
               TransitionComponent={Transition}
             >
               <AppBar className={styles.appBar}>
-                <Toolbar>
-                  <button className={'round-close-button'}>
-                    <CloseIcon onClick={this.handleClose} aria-label="Close"/>
+                <Toolbar style={{padding: '4px'}}>
+
+                  <button className={'round-close-button-plugin-tip'} onClick={this.handleClose} aria-label="Close">
+                    <CloseIcon />
                   </button>
-                  <Typography variant="title" color="inherit" className={styles.flex}>
-                    Sound
-                  </Typography>
+                  <div className={'dialog-divider'}></div>
+                  <div className={'dialog-title'}>
+                    <Typography variant="title" color="inherit" className={styles.flex}>
+                        Overview
+                    </Typography>
+                  </div>
 
                 </Toolbar>
               </AppBar>
-              <List>
-                <ListItem button>
-                  <ListItemText primary="Phone ringtone" secondary="Titania" />
-                </ListItem>
-                <Divider />
-                <ListItem button>
-                  <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-                </ListItem>
-              </List>
+              <div className={'dialog-content'}>
+                <Paper  elevation={4}>
+                  <Typography variant="headline" component="h3">
+                    This is a sheet of paper.
+                  </Typography>
+                  <Typography component="p">
+                    Paper can be used to build surface or other elements for your application.
+                  </Typography>
+                </Paper>
+              </div>
             </Dialog>
         </React.Fragment>
       )

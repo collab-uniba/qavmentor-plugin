@@ -1,9 +1,14 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import store from '../../store';
 import {getTips} from '../../services';
 import {getPost} from '../../utils'
+
+import './Tip.css';
+
 
 class Tip extends React.Component {
 
@@ -44,9 +49,9 @@ class Tip extends React.Component {
             }}
             message={<span id="snackbar-fab-message-id">{"TIP: "+this.state.message}</span>}
             action={
-              <Button onClick={this.handleClose}>
-                close
-              </Button>
+              <button className={'round-close-button-tip'} onClick={this.handleClose} aria-label="Close">
+                <CloseIcon />
+              </button>
             }
           />
     );
@@ -100,7 +105,7 @@ class Tip extends React.Component {
 
           }
         })
-      }.bind(this), 500)
+      }.bind(this), 1000)
     }.bind(this)
   }
 

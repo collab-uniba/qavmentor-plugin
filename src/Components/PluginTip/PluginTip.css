@@ -1,14 +1,14 @@
 .plugin_div_wmd-input {
     position: absolute !important;
-    left: 600px;
-    bottom: 30px;
+    left: 620px;
+    bottom: 25px;
 }
 
 
 .plugin_div_title {
     position: absolute !important;
-    left: 600px;
-    bottom: 20px;
+    left: 620px;
+    bottom: 24px;
 }
 
 .plugin_div_title_suggestion {
@@ -19,19 +19,24 @@
 
 .plugin_div_tag-editor {
     position: absolute !important;
-    left: 600px;
-    bottom: -2px;
+    left: 630px;
+    bottom: 2px;
 }
+
 
 
 .round_button {
   font-family: arial;
   color: #FFFFFF !important;
-  font-size: 16px;
-  padding: 4px 4px;
-  -moz-border-radius: 40px;
-  -webkit-border-radius: 40px;
-  border-radius: 40px;
+  font-size: 10px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px 8px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
   background: #3f51b5;
 }
 .round_button:hover {
@@ -40,7 +45,10 @@
 }
 
 
-.round-close-button {
+
+
+
+.round-close-button-plugin-tip {
     padding: 15px 15px;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
@@ -48,16 +56,31 @@
     box-shadow: none;
     border: none;
     background: transparent;
-
 }
-.round-close-button:hover {
-  background: #5b5bda;
+
+.round-close-button-plugin-tip:hover {
+  background: #4858b3 !important;
   box-shadow: none;
   border: none;
 }
 
-.round-close-button:focus {
-  background: #6e6ee4;
+.round-close-button-plugin-tip:focus {
+  background: #5362b5 !important;
   box-shadow: none;
   border: none;
+}
+
+
+
+
+.dialog-divider {
+  flex: 1;
+}
+
+.dialog-title {
+  flex: 3;
+}
+
+.dialog-content {
+  margin-top: 65px;
 }

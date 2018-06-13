@@ -35,34 +35,34 @@ class App extends Component
 
         body.onfocus = function()
         {
-            // if(!document.getElementById('plugin_tips') || document.getElementById('plugin_tips').childNodes.length > 0)
-            //   ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+            if(rendering_on && rendering_on !== "body")
+                ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
             body.parentNode.insertBefore(plugin_tips, body.nextSibling);
             ReactDOM.render(<PluginTip attached_to={body_id} my_style={body_id}/>, document.getElementById('plugin_tips'));
+            rendering_on = "body"
         }
 
         // body.onblur = function()
         // {
-        //     // console.log("unmounting body")
         //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
         // }
 
 
         title.onfocus = function()
         {
-          // if(!document.getElementById('plugin_tips') || document.getElementById('plugin_tips').childNodes.length > 0)
-          //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+            if(rendering_on && rendering_on !== "title")
+                ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
             title.parentNode.insertBefore(plugin_tips, title.nextSibling);
             if(document.getElementById('question-suggestions').childNodes.length === 1)
             ReactDOM.render(<PluginTip attached_to={title_id} my_style={title_id} /> , document.getElementById('plugin_tips'));
             else
             ReactDOM.render(<PluginTip attached_to={title_id} my_style="title_suggestion" /> , document.getElementById('plugin_tips'));
+            rendering_on = "title"
 
         }
 
         // title.onblur = function()
         // {
-        //     // console.log("unmounting title")
         //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
         // }
 
@@ -70,17 +70,18 @@ class App extends Component
 
         tags.onfocus = function()
         {
-          // if(!document.getElementById('plugin_tips') || document.getElementById('plugin_tips').childNodes.length > 0)
-          //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+            if(rendering_on && rendering_on !== "tags")
+                ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
+
             ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
             tags.parentNode.insertBefore(plugin_tips, tags.nextSibling);
             ReactDOM.render(<PluginTip attached_to={tags_id} my_style={tags_id} /> , document.getElementById('plugin_tips'));
+            rendering_on = "tags"
 
         }
-        // 
+
         // tags.onblur = function()
         // {
-        //     // console.log("unmounting tags")
         //     ReactDOM.unmountComponentAtNode(document.getElementById('plugin_tips'));
         // }
 
