@@ -22,13 +22,19 @@ class PluginPercentage extends Component
   render() {
     var prediction_div
     if(this.state.prediction === -1 || !this.state.prediction)
-      prediction_div = (<div><CircularProgress size={150} /><div className="percentage"></div></div>)
+    prediction_div = (
+      <div>
+          <CircularProgress color={'#dcdcdc'} variant="static" value={100} size={200} />
+          <div className="percentage">__</div>
+          <CircularProgress className={'top-percentage'} size={200} />
+      </div>
+    )
     else
       prediction_div = (
         <div>
-            <CircularProgress color={'#8e8e8e'} variant="static" value={100} size={150} />
+            <CircularProgress color={'#dcdcdc'} variant="static" value={100} size={200} />
             <div className="percentage">{ this.state.prediction }</div>
-            <CircularProgress className={'top-percentage'} variant="static" value={ this.state.prediction } size={150} />
+            <CircularProgress className={'top-percentage'} variant="static" value={ this.state.prediction } size={200} thickness={5} />
         </div>
       )
 
@@ -43,9 +49,7 @@ class PluginPercentage extends Component
     }else{
       plugin_button = (
         <div>
-          <div>
-              {prediction_div}
-          </div>
+          {prediction_div}
         </div>
       )
     }

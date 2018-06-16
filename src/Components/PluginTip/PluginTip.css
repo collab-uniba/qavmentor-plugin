@@ -13,7 +13,7 @@
 
 .plugin_div_title_suggestion {
     position: absolute !important;
-    left: 600px;
+    left: 620px;
     bottom: 215px;
 }
 
@@ -28,7 +28,6 @@
 .round_button {
   font-family: arial;
   color: #FFFFFF !important;
-  font-size: 10px;
   width: 25px;
   height: 25px;
   text-align: center;
@@ -45,7 +44,11 @@
 }
 
 
-
+.tip-number {
+  margin-top: -3px;
+  margin-left: -3px;
+  font-size: 13px !important;
+}
 
 
 .round-close-button-plugin-tip {
@@ -71,6 +74,18 @@
 }
 
 
+.app-bar {
+  position: sticky;
+}
+
+
+
+.plugin_percentage {
+  padding-left: 30%;
+}
+
+
+
 
 
 .dialog-divider {
@@ -82,6 +97,12 @@
 }
 
 .dialog-content {
-  margin-top: 65px;
-  padding: 10%;
+  margin-top: 18%;
+}
+
+
+
+.tip-list-container {
+  background: #e2e0e0;
+  padding-top: 1px;
 }

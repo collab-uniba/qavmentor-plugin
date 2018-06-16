@@ -2,13 +2,13 @@
 .percentage{
   font-size: 50px;
   position: relative !important;
-  bottom: 110px;
-  top: auto;
-  left: 45px;
+  bottom: 135px;
+  text-align: -webkit-center;
 }
 
 
 .top-percentage {
   position: relative;
-  bottom: 217px;
+  margin-top: -100%;
+  top: -79px;
 }
