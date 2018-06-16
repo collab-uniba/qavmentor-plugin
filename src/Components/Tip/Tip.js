@@ -64,7 +64,7 @@ class Tip extends React.Component {
       {
         var tip = null
         for (var i = 0; i < data.length; i++) {
-           if (!store.subject.tips.includes(data[i].tip_index))
+           if (!store.subject.tips.includes(data[i].index))
             tip = data[i]
         }
         if(tip != null)
@@ -72,7 +72,7 @@ class Tip extends React.Component {
           this.setState({
             open:true,
             message: tip.msg,
-            current_tip: tip.tip_index
+            current_tip: tip.index
           })
         }
 
@@ -91,7 +91,7 @@ class Tip extends React.Component {
           {
             var tip = null
             for (var i = 0; i < data.length; i++) {
-               if (!store.subject.tips.includes(data[i].tip_index))
+               if (!store.subject.tips.includes(data[i].index))
                 tip = data[i]
             }
             if(tip != null)
@@ -99,7 +99,7 @@ class Tip extends React.Component {
               this.setState({
                 open:true,
                 message: tip.msg,
-                current_tip: tip.tip_index
+                current_tip: tip.index
               })
             }
 

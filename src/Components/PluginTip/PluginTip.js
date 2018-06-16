@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import PluginPercentage from './PluginPercentage/PluginPercentage';
+
 import Dialog from '@material-ui/core/Dialog';
 
 import PropTypes from 'prop-types';
@@ -15,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 import store from '../../store';
 
@@ -92,7 +96,7 @@ class PluginTip extends Component
             </div>
 
             <Dialog
-              // fullScreen
+              //fullScreen
               open={this.state.open}
               onClose={this.handleClose}
               TransitionComponent={Transition}
@@ -112,15 +116,22 @@ class PluginTip extends Component
 
                 </Toolbar>
               </AppBar>
+
               <div className={'dialog-content'}>
-                <Paper  elevation={4}>
-                  <Typography variant="headline" component="h3">
-                    This is a sheet of paper.
-                  </Typography>
-                  <Typography component="p">
-                    Paper can be used to build surface or other elements for your application.
-                  </Typography>
-                </Paper>
+
+                <div>
+                  <Grid container spacing={24}>
+                    <Grid item xs>
+                      <PluginPercentage/>
+                    </Grid>
+                    <Grid item xs>
+                      <Typography variant="headline" component="h3">
+                        This is a sheet of paper.
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </div>
+                
               </div>
             </Dialog>
         </React.Fragment>
