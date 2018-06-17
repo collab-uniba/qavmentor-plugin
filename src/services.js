@@ -27,6 +27,7 @@ export function getPrediction(data) {
 export function getTips(data) {
   var request = axios.post(api_url+'/getTip',data)
     .then( (response) => {
+      console.log(response.data)
           return response.data
         })
     .catch( (error) => {

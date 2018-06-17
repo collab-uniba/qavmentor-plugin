@@ -16,8 +16,8 @@ class Tip extends React.Component {
     super(props);
     this.timer = null
     this.state = {
-      "current_tip": -1,
-      "closed_tips": [],
+      "current_tip_index": -1,
+      "current_tip": {},
       "message": "initial message",
       "open": false
     }
@@ -32,7 +32,8 @@ class Tip extends React.Component {
 
   handleClose = () => {
     this.setState({ open: false });
-    store.get('tips').push(this.state.current_tip)
+    store.get('closed_tips_index').push(this.state.current_tip_index)
+    store.get('closed_tips').push(this.state.current_tip)
   };
 
 
@@ -64,15 +65,16 @@ class Tip extends React.Component {
       {
         var tip = null
         for (var i = 0; i < data.length; i++) {
-           if (!store.subject.tips.includes(data[i].index))
-            tip = data[i]
+           if (!store.subject.closed_tips_index.includes(data[i].index))
+              tip = data[i]
         }
         if(tip != null)
         {
           this.setState({
             open:true,
             message: tip.msg,
-            current_tip: tip.index
+            current_tip_index: tip.index,
+            current_tip: tip
           })
         }
 
@@ -91,7 +93,7 @@ class Tip extends React.Component {
           {
             var tip = null
             for (var i = 0; i < data.length; i++) {
-               if (!store.subject.tips.includes(data[i].index))
+               if (!store.subject.closed_tips_index.includes(data[i].index))
                 tip = data[i]
             }
             if(tip != null)
@@ -99,7 +101,8 @@ class Tip extends React.Component {
               this.setState({
                 open:true,
                 message: tip.msg,
-                current_tip: tip.index
+                current_tip_index: tip.index,
+                current_tip: tip
               })
             }
 

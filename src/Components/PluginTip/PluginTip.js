@@ -25,6 +25,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import store from '../../store';
+import {countTipCategory} from '../../utils'
 
 import './PluginTip.css';
 
@@ -44,7 +45,7 @@ class PluginTip extends Component
     super(props);
     this.timer = null
     this.state = {
-      "closed_tips": store.subject.tips || [],
+      "closed_tips": store.subject.closed_tips || [],
       "attached_to": props.attached_to,
       "my_style": props.my_style,
       "fullScreen": false,
@@ -54,7 +55,7 @@ class PluginTip extends Component
 
     store.on('change', function(change){
         this.setState({
-          closed_tips:store.subject.tips
+          closed_tips:store.subject.closed_tips
         })
     }.bind(this))
 
@@ -159,7 +160,7 @@ class PluginTip extends Component
             <div className={"plugin_div_" +this.state.my_style } onClick={this.handleOpen}>
               <div className={"round_button"}>
                   <div className={'tip-number'}>
-                      {this.state.closed_tips.length}
+                      {countTipCategory(this.props.category, this.state.closed_tips)}
                   </div>
               </div>
             </div>
