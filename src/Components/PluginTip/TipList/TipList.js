@@ -6,6 +6,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 
+import {getTips} from '../../../services';
+import {getPost} from '../../../utils'
 import './TipList.css';
 
 
@@ -32,25 +34,28 @@ class TipList extends Component
 
 
   componentDidMount() {
-    var tip_list = []
-    var n = Math.floor(Math.random() * 20);
-    for (var i = 0; i < n; i++) {
-      tip_list.push( <ExpansionPanel>
-                      <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                        <Typography>{i}</Typography>
-                      </ExpansionPanelSummary>
-                      <ExpansionPanelDetails>
-                        <Typography>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                          sit amet blandit leo lobortis eget.
-                        </Typography>
-                      </ExpansionPanelDetails>
-                    </ExpansionPanel>)
-    }
 
-    this.setState({
-      tip_list: tip_list
-    })
+    getTips(getPost()).then(data => {
+      for (var i = 0; i < data.length; i++) {
+        this.state.tip_list.push(
+            <ExpansionPanel>
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                <Typography>{i} - {data[i].msg}</Typography>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                  sit amet blandit leo lobortis eget.
+                </Typography>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+          )
+      }
+  })
+
+
+
+
   }
 
 
