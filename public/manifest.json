@@ -1,9 +1,9 @@
 
 {
   "manifest_version": 2,
-  "name": "React Content Script",
-  "version": "0.0.2",
-  "description": "React Content Script",
+  "name": "QAvMentor",
+  "version": "0.0.3",
+  "description": "Virtual mentor (Chrome) plugin for social Q&A sites, e.g. Stack Overflow",
   "content_scripts": [
     {
       "matches": ["https://stackoverflow.com/questions/ask"],
