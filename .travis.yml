@@ -10,8 +10,7 @@ script:
   - "npm test a"
 
 after_script:
-  - "npm run build"
-
+  - "grunt build"
 
 
 
