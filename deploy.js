@@ -1,7 +1,7 @@
 const zipFolder = require('zip-folder');
 const exec      = require('child_process').exec;
 
-let folder = 'dist';
+let folder = 'build';
 let zipName = 'extension.zip';
 
 // credentials and IDs from gitlab-ci.yml file
