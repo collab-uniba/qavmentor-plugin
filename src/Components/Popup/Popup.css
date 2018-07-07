@@ -1,0 +1,11 @@
+.content{
+  padding: 10%;
+}
+
+.option-button{
+  color: #989696 !important;
+  background-color: #a99ca100 !important;
+  box-shadow: none !important;
+  top: -7px;
+
+}

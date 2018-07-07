@@ -10,5 +10,5 @@
 .top-percentage {
   position: relative;
   margin-top: -100%;
-  top: -79px;
+  top: -79px !important;
 }

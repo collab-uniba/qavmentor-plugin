@@ -25,7 +25,7 @@
 
 
 
-.round_button {
+.round_button-error {
   font-family: arial;
   color: #FFFFFF !important;
   width: 25px;
@@ -36,12 +36,66 @@
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
   border-radius: 50px;
-  background: #3f51b5;
+  background: #E41F2F !important;
 }
-.round_button:hover {
+.round_button-error:hover {
   color: #FAFDFF !important;
-  background: #5b5bda;
+  background: #d03c3c !important;
 }
+.round-button-error:focus {
+  background: #d04848 !important;
+  box-shadow: none;
+  border: none;
+}
+
+
+.round_button-warning {
+  font-family: arial;
+  color: #FFFFFF !important;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px 8px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  background: #FF9A00 !important;
+}
+.round_button-warning:hover {
+  color: #FAFDFF !important;
+  background: #fbab2b !important;
+}
+.round-button-warning:focus {
+  background: #f9b13e !important;
+  box-shadow: none;
+  border: none;
+}
+
+
+.round_button-success {
+  font-family: arial;
+  color: #FFFFFF !important;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px 8px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  background: #00A047 !important;
+}
+.round_button-success:hover {
+  color: #FAFDFF !important;
+  background: #52a953 !important;
+}
+.round-button-success:focus {
+  background: #71bd72 !important;
+  box-shadow: none;
+  border: none;
+}
+
 
 
 .tip-number {
