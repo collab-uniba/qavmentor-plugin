@@ -2,12 +2,13 @@ import axios from 'axios';
 
 const stackexchange_api = 'https://api.stackexchange.com/2.2/users/'
 const api_url = 'https://90.147.75.125'
+const local_url = 'https://localhost'
 var n_req_made = 0
 var max_req = 100
 
 
 export function getPrediction(data) {
-  var req = axios.post(api_url+'/analyze',data)
+  var req = axios.post(api_url+'/getPredictionDiscretizedByUser',data)
     .then( (response) => {
           console.log(response.data.prediction)
           return parseInt(parseFloat(response.data.prediction))
