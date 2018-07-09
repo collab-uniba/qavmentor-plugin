@@ -49,8 +49,16 @@ class PluginTip extends Component
       "attached_to": props.attached_to,
       "my_style": props.my_style,
       "alert_type": "error",
-      "dashboard_open": false
+      "dashboard_open": false,
+      "type": !store.subject.type ? 0 : store.subject.type
     };
+
+    store.on('change', function(change){
+      console.log('changing store....')
+        this.setState({
+          type: store.subject.type
+        })
+    }.bind(this))
 
   }
 
@@ -93,7 +101,7 @@ class PluginTip extends Component
 
 
   componentDidMount() {
-    getPrediction(getPost()).then(data => {
+    getPrediction(getPost(), this.state.type).then(data => {
       if(data<low_percentage)
         this.setState({alert_type: "error"})
 
@@ -113,7 +121,8 @@ class PluginTip extends Component
       clearTimeout(this.timer);
       this.timer = setTimeout(function()
       {
-        getPrediction(getPost()).then(data => {
+        getPrediction(getPost(), this.state.type).then(data => {
+          console.log(data, this.state.type)
           if(data<low_percentage)
             this.setState({alert_type: "error"})
           if(data>=low_percentage && data<medium_percentage)

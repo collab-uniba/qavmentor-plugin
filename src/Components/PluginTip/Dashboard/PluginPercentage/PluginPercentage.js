@@ -3,6 +3,7 @@ import CircularProgress from '../CircularProgress/CircularProgress.js';
 
 import {getPrediction} from '../../../../services';
 import {getPost} from '../../../../utils'
+import store from '../../../../store.js'
 
 import './PluginPercentage.css';
 
@@ -14,10 +15,19 @@ class PluginPercentage extends Component
     super(props);
     this.state = {
       "color": props.variant,
-      "prediction": -1
+      "prediction": -1,
+      "type": !store.subject.type ? 0 : store.subject.type
     };
 
+    store.on('change', function(change){
+        this.setState({
+          type: store.subject.type
+        })
+
+    }.bind(this))
+
   }
+
 
   componentWillReceiveProps(newProps) {
       this.setState({color: newProps.variant});
@@ -63,7 +73,7 @@ class PluginPercentage extends Component
 
 
   componentWillMount() {
-      getPrediction(getPost()).then(data => { this.setState({prediction: data}) })
+      getPrediction(getPost(), this.state.type).then(data => { this.setState({prediction: data}) })
     }
 
 

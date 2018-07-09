@@ -17,7 +17,6 @@
       "matches": ["https://stackoverflow.com/questions/ask*"],
       "css": ["/static/css/main.css"],
       "js": ["/static/js/main.js"],
-
       "run_at": "document_end"
 
     }

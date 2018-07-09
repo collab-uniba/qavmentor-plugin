@@ -13,8 +13,8 @@ export function getPost(){
     html_question = document.getElementById('wmd-preview')
   var date = new Date()
   var reputation = store.subject.user.reputation
-  console.log("user")
-  console.log(store.subject.user)
+  // console.log("user")
+  // console.log(store.subject.user)
   return {
       "day": (date.getDay()).toString(),
       "hour": (date.getHours()).toString(),

@@ -7,10 +7,18 @@ var n_req_made = 0
 var max_req = 100
 
 
-export function getPrediction(data) {
-  var req = axios.post(api_url+'/getPredictionDiscretizedByUser',data)
+export function getPrediction(data,type) {
+  var endpoint = '';
+  if(type === 0 || type === 'RAW' || !type)
+    endpoint = '/getPredictionRaw';
+  if(type === 1 || type === 'DISCRETIZED')
+    endpoint = '/getPredictionDiscretized';
+  if(type === 2 || type === 'DISCRETIZED_BY_USER')
+    endpoint = '/getPredictionDiscretizedByUser';
+
+  var req = axios.post(api_url+endpoint,data)
     .then( (response) => {
-          console.log(response.data.prediction)
+          // console.log(response.data.prediction)
           return parseInt(parseFloat(response.data.prediction))
         })
     .catch( (error) => {
@@ -25,10 +33,11 @@ export function getPrediction(data) {
 }
 
 
+
 export function getSOUser(id) {
   var req = axios.get(stackexchange_api+id+'?site=stackoverflow')
     .then( (response) => {
-          console.log(response.data.items[0])
+          // console.log(response.data.items[0])
 
           return response.data.items[0]
         })
@@ -44,10 +53,11 @@ export function getSOUser(id) {
 }
 
 
+
 export function getTips(data) {
   var req = axios.post(api_url+'/getTip',data)
     .then( (response) => {
-          console.log(response.data)
+          // console.log(response.data)
           return response.data
         })
     .catch( (error) => {
