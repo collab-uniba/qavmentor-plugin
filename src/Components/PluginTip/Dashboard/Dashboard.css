@@ -17,7 +17,8 @@
 
 /*error*/
 .round-close-button-plugin-tip-error {
-    padding: 15px 15px;
+    padding: 10px 10px;
+    margin-right: 5px;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
@@ -40,7 +41,8 @@
 
 /*warning*/
 .round-close-button-plugin-tip-warning {
-    padding: 15px 15px;
+    padding: 10px 10px;
+    margin-right: 5px;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
@@ -63,7 +65,8 @@
 
 /*success*/
 .round-close-button-plugin-tip-success {
-    padding: 15px 15px;
+    padding: 10px 10px;
+    margin-right: 5px;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
@@ -86,27 +89,13 @@
 
 
 
-.plugin_percentage {
-  padding-left: 30%;
-}
-
-
-
-.dialog-divider {
-  flex: 1;
-}
-
-.dialog-title {
-  flex: 3;
-}
-
 .dialog-content {
   margin-top: 13% !important;
 }
 
 
 
-.tip-list-container {
-  background: #e2e0e0;
-  padding-top: 1px;
+.plugin_percentage {
+  padding-left: 190px;
+  padding-right: 300px;
 }

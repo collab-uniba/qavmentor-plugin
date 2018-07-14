@@ -88,48 +88,49 @@ class Dashboard extends Component
 
     opt1 = (
       <React.Fragment>
-        <Typography variant="headline" gutterBottom>
+      <Typography variant="headline" align={'center'} gutterBottom>
            {title}
          </Typography>
-         <Divider/>
-        <Grid container >
-            <PluginPercentage className={'plugin_percentage'} variant={this.state.variant}/>
+        <Grid container className={'plugin_percentage'}>
+            <PluginPercentage  variant={this.state.variant}/>
         </Grid>
-        <Typography variant="headline" gutterBottom>
+        <Typography variant="headline" align={'center'} gutterBottom>
            Tips to improve your question
          </Typography>
          <Divider/>
         <TipList/>
       </React.Fragment>
     )
+
     opt2 = (
       <React.Fragment>
-        <Typography variant="headline" gutterBottom>
+        <Typography variant="headline" align={'center'} gutterBottom>
            {title}
          </Typography>
-         <Divider/>
         <Grid container >
-          <PluginPercentageLinear className={'plugin_percentage'} variant={this.state.variant}/>
+          <PluginPercentageLinear variant={this.state.variant}/>
         </Grid>
-        <Typography variant="headline" gutterBottom>
-           Tips to improve your question
-         </Typography>
+          <Typography variant="headline" align={'center'} gutterBottom>
+            Tips to improve your question
+          </Typography>
          <Divider/>
         <TipList/>
       </React.Fragment>
-
     )
+
     dialog = (
-      <Dialog open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition}  className={'dialog-fragment'}>
+      <Dialog
+       open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition} >
+
         <AppBar className={'app-bar-'+this.state.variant}>
-          <Toolbar style={{padding: '4px'}}>
+          <Toolbar>
 
             <button className={'round-close-button-plugin-tip-'+this.state.variant} onClick={this.handleClose} aria-label="Close">
               <CloseIcon />
             </button>
-            <div className={'dialog-divider'}></div>
-            <div className={'dialog-title'}>
-              <Typography variant="title" color="inherit" style={{align: 'center'}}>
+
+            <div>
+              <Typography variant="title" color="inherit" align={'center'}>
                   Improve your question
               </Typography>
             </div>

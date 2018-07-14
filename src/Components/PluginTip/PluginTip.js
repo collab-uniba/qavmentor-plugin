@@ -94,7 +94,7 @@ class PluginTip extends Component
 
     return (
       <React.Fragment>
-        { this.state.tips_count!=0 ? plugin_tip : null }
+        {plugin_tip}
       </React.Fragment>
     )
   }
@@ -113,7 +113,7 @@ class PluginTip extends Component
     });
 
     getTips(getPost()).then(data => {
-      this.setState({"tips_count": countTipCategory(this.props.category, data)});
+      this.setState({"tips_count": countTipCategory('actionable', data)});
     });
 
     window.onkeydown = function()
@@ -133,8 +133,8 @@ class PluginTip extends Component
         });
 
         getTips(getPost()).then(data => {
-          console.log("_____________________"+this.props.category+" "+ data)
-          this.setState({"tips_count": countTipCategory(this.props.category, data)});
+          console.log( data);
+          this.setState({"tips_count": countTipCategory('actionable', data)});
         });
       }.bind(this), 1000)
     }.bind(this)
