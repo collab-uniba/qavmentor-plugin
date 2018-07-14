@@ -35,7 +35,6 @@ class PluginPercentage extends Component
 
 
   render() {
-    var prediction_div
     var color = '';
     if(this.state.color === 'success')
       color = '#00A047';
@@ -43,22 +42,16 @@ class PluginPercentage extends Component
       color = '#FF9A00';
     if(this.state.color === 'error')
       color = '#E41F2F';
-      prediction_div = (
-        <div>
-            <Circle percent={this.state.prediction} strokeWidth="5" trailWidth="5" strokeColor={color} width={150} />
-            <div className="percentage">{ this.state.prediction } %</div>
-        </div>
-      )
 
-    var plugin_button
 
-      plugin_button = (
-        <div className={'circle-percentage'}>
-          {prediction_div}
-        </div>
-      )
-    
-    return (plugin_button);
+    return (
+      <div className={'circle-percentage'}>
+          <div>
+              <Circle percent={this.state.prediction} strokeWidth="5" trailWidth="5" strokeColor={color} width={150} />
+              <div className="percentage">{ this.state.prediction } %</div>
+          </div>
+      </div>
+    );
   }
 
 

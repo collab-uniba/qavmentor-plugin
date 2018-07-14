@@ -13,8 +13,7 @@ export function getPost(){
     html_question = document.getElementById('wmd-preview')
   var date = new Date()
   var reputation = store.subject.user.reputation
-  // console.log("user")
-  // console.log(store.subject.user)
+
   return {
       "day": (date.getDay()).toString(),
       "hour": (date.getHours()).toString(),
@@ -24,16 +23,6 @@ export function getPost(){
       "reputation": reputation,
       "modified": store.subject.modified
   }
-}
-
-
-
-export function capitalize(string) {
-  if (process.env.NODE_ENV !== 'production' && typeof string !== 'string') {
-    throw new Error('Material-UI: capitalize(string) expects a string argument.');
-  }
-
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 

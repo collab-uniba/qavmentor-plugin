@@ -42,18 +42,15 @@ class PluginPercentageLinear extends Component
       if(this.state.variant === 'error')
         variant = '#E41F2F';
 
-      var plugin_button
 
-        plugin_button = (
-          <div className={'line-percentage'}>
-            <div style={{fontSize: 'large'}} >
-              <Line percent={this.state.prediction} strokeWidth="2" trailWidth="2" strokeColor={variant} width={500} />
-                { this.state.prediction } %
-            </div>
+      return(
+        <div className={'line-percentage'}>
+          <div style={{fontSize: 'large'}} >
+            <Line percent={this.state.prediction} strokeWidth="2" trailWidth="2" strokeColor={variant} width={500} />
+              { this.state.prediction } %
           </div>
-        )
-
-      return(plugin_button);
+        </div>
+      );
     }
 
 

@@ -20,11 +20,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -82,7 +77,7 @@ class Dashboard extends Component
     var title = ''
 
     if(!this.state.type || this.state.type === 'RAW' || this.state.type === 'DISCRETIZED')
-      title = 'Percentage that your question will have a useful answer';
+      title = 'Probability that your question will have a useful answer';
     if(this.state.type === 'DISCRETIZED_BY_USER')
       title = 'Question completeness';
 

@@ -60,30 +60,8 @@ class Popup extends Component
 
 
   render(){
-    // <div className={"content"}>
-    //   <Grid container spacing={24} justify={"space-around"}>
-    //     <Typography item xs={20} sm={20} variant="display1" gutterBottom>
-    //       QAvMentor
-    //     </Typography>
-    //     <div item xs={2} sm={2}></div>
-    //
-    //     <Button item xs={2} sm={2} variant="fab" className={"option-button"} size={"small"} >
-    //       <BuildIcon/>
-    //     </Button>
-    //   </Grid>
-    //
-    //   <hr/>
-    //   <br/>
-    //
-    //   <Grid container spacing={24} justify={"space-around"}>
-    //     <h2 item xs={24} sm={24}>Reputation: New</h2>
-    //     <img item xs={24} sm={24} width="420" height="420" src="https://d33wubrfki0l68.cloudfront.net/cc541f9cbdd7e0c8f14c2fde762ff38c00e9d62b/fc921/images/angular/ng2-charts/chart-example.png"/>
-    //
-    //   </Grid>
-    //
-    // </div>
     return(
-      <div className={"content"} width="420" height="420">
+      <div className={"content"}>
         <Grid container spacing={24} justify={"space-around"}>
           <Typography item xs={20} sm={20} variant="display1" gutterBottom>
             QAvMentor
@@ -98,28 +76,35 @@ class Popup extends Component
         <hr/>
         <br/>
 
-        <Grid container spacing={24} justify={"space-around"}>
-          <Switch
-            checked={this.state.RAW}
-            onChange={this.handleChange('RAW')}
-            value="RAW"
-          />
-          <Switch
-            checked={this.state.DISCRETIZED}
-            onChange={this.handleChange('DISCRETIZED')}
-            value="DISCRETIZED"
-            color="primary"
-          />
+        <div container spacing={24} justify={"space-around"} style={{width:'500px', height:'300px'}}>
+          <p>Raw
+             <Switch
+              checked={this.state.RAW}
+              onChange={this.handleChange('RAW')}
+              value="RAW"
+             />
+          </p>
+
+          <p>Discretized
+            <Switch
+              checked={this.state.DISCRETIZED}
+              onChange={this.handleChange('DISCRETIZED')}
+              value="DISCRETIZED"
+              color="primary"
+            />
+          </p>
+
+          <p>Discretized by reputation
            <Switch
               checked={this.state.DISCRETIZED_BY_USER}
               onChange={this.handleChange('DISCRETIZED_BY_USER')}
               value="DISCRETIZED_BY_USER"
               color="primary"
             />
-        </Grid>
-        <Grid container spacing={24} justify={"space-around"}>
-          {this.state.type}
-        </Grid>
+          </p>
+
+        </div>
+
       </div>
     )
   }

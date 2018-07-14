@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
+import Chip from '@material-ui/core/Chip';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -26,8 +23,7 @@ class TipList extends Component
       this.state = {
         tip_list: []
       }
-
-    };
+  };
 
 
   render() {
@@ -35,12 +31,14 @@ class TipList extends Component
       <div className={'tip-list'}>
         <List component="nav">
         {this.state.tip_list.map(function(d){
-           return ( <React.Fragment>
-                                <ListItem button>
-                                  <ListItemText primary={d.title} />
-                                </ListItem>
-                                <Divider/>
-                    </React.Fragment>);
+           return (
+             <React.Fragment>
+                  <ListItem button>
+                    <ListItemText primary={d.title} />   <Chip label={d.category}/>
+                  </ListItem>
+                  <Divider/>
+             </React.Fragment>
+           );
          })}
 
        </List>
@@ -50,13 +48,11 @@ class TipList extends Component
 
 
   componentWillMount() {
-
     getTips(getPost()).then(data => {
       this.setState({
         tip_list:data
       })
     })
-
   }
 
 
