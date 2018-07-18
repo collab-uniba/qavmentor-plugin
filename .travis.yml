@@ -7,10 +7,13 @@ script:
 - npm test a
 
 after_script:
-- if: branch = master
 - npm run build
-- CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} EXTENSION_ID=${EXTENSION_ID}
-  REFRESH_TOKEN=${REFRESH_TOKEN} node ./deploy.js
+- |
+    if [ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]; then
+      CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} EXTENSION_ID=${EXTENSION_ID}
+      REFRESH_TOKEN=${REFRESH_TOKEN} node ./deploy.js
+    fi
+
 env:
   global:
   - secure: RETblPShlP3w/YwgmUORqu9ey2Dr+JKI17Spynar1Zovns7hgL4K+++VWxAVo7DkdpCE1LgLmMP76NLK/HvttUa2unTv701lcCh5QtGJMxlKqmt6V+s3bLO45TjnV6Q+LK4uXatldIBQJ5qSWP55w0ltlPBq1SJ9lBcj1L8TBN3H9S3nPvBwhI0JdlaoMF5XdNnswKAYmcABrF/FwidETUUmtTtCiGIzXghiW7+sexvMb21blkcRBIAd+Q2x9h4+xMZS6ZAmlhmtL6YaGer1/pppzkuhEbf6jOg5Qx4X2fN/nJNvebJdIVlAeToPMZsYTXMl3/8Lol7BhdFTZpcC9B+hRfhEVG5BIimWnmjt+3UCgACmXJ8ijh6FDXtlABstEMZTY0t9HdEU54IWQ28mcBbwY3r1BN4AtmC9+ZgPZqApGJRTuzWbpcELvbMmTRZ6g8m2xgWAAmAqZ5ABlbX8qIw7iRG1ZmV+nIrcm9NnteysMDrjn7rgdqsTh37Fu36y1QwXKND4g7Pd+haKWsm9kJ3UTlVvc9gJ2tTOe29QFdo9DJ2WWsG3ZtOVswCL3tZZNL0Qfr8C16ll9p3pIK5I5afv9rqEZIoozRzdhv/CgO/SoUVFtnS55PxWwKswcdLtV2yst6la1PPwW90voQMdNgHnTv5rT0ES9CQqFGeGkcE=
