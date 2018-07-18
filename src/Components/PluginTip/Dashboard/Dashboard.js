@@ -40,7 +40,6 @@ class Dashboard extends Component
     this.state = {
       "open": props.open,
       "variant": props.variant,
-      "value": 0,
       "type": !store.subject.type ? 0 : store.subject.type
     };
 
@@ -97,21 +96,6 @@ class Dashboard extends Component
       </React.Fragment>
     )
 
-    opt2 = (
-      <React.Fragment>
-        <Typography variant="headline" align={'center'} gutterBottom>
-           {title}
-         </Typography>
-        <Grid container >
-          <PluginPercentageLinear variant={this.state.variant}/>
-        </Grid>
-          <Typography variant="headline" align={'center'} gutterBottom>
-            Tips to improve your question
-          </Typography>
-         <Divider/>
-        <TipList/>
-      </React.Fragment>
-    )
 
     dialog = (
       <Dialog
@@ -135,17 +119,7 @@ class Dashboard extends Component
 
 
         <div className={'dialog-content'}>
-          <Tabs
-            value={this.state.value}
-            indicatorColor="primary"
-            textColor="primary"
-            onChange={this.handleChange}
-          >
-            <Tab label="Mockup 1" />
-            <Tab label="Mockup 2"  />
-          </Tabs>
-          {this.state.value===0 ? opt1 : null}
-          {this.state.value===1 ? opt2 : null}
+          {opt1}
         </div>
       </Dialog>
     )

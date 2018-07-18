@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const stackexchange_api = 'https://api.stackexchange.com/2.2/users/'
-const api_url = 'https://90.147.75.125'
+const api_url = 'https://qavmentor.uniba.it'
 const local_url = 'https://localhost'
 var n_req_made = 0
 var max_req = 100
