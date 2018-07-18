@@ -5,7 +5,8 @@ before_script:
 - npm install
 script:
 - npm test a
-after_script:
+
+after_script if: branch = master:
 - npm run build
 - CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} EXTENSION_ID=${EXTENSION_ID}
   REFRESH_TOKEN=${REFRESH_TOKEN} node ./deploy.js
