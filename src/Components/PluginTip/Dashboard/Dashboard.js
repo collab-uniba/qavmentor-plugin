@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import PluginPercentage from './PluginPercentage/PluginPercentage';
-import PluginPercentageLinear from './PluginPercentageLinear/PluginPercentageLinear';
 import TipList from './TipList/TipList';
 
 import Dialog from '@material-ui/core/Dialog';
@@ -40,15 +39,8 @@ class Dashboard extends Component
     this.state = {
       "open": props.open,
       "variant": props.variant,
-      "type": !store.subject.type ? 0 : store.subject.type
     };
 
-    store.on('change', function(change){
-        this.setState({
-          type: store.subject.type
-        })
-
-    }.bind(this))
   }
 
   componentWillReceiveProps(newProps) {
@@ -71,35 +63,19 @@ class Dashboard extends Component
 
   render(){
     var dialog
-    var opt1
-    var opt2
+    var raw
+    var normalized
     var title = ''
 
-    if(!this.state.type || this.state.type === 'RAW' || this.state.type === 'DISCRETIZED')
-      title = 'Probability of getting useful answer';
-    if(this.state.type === 'DISCRETIZED_BY_USER')
-      title = 'Closeness to maximum improvement';
-
-    opt1 = (
-      <React.Fragment>
-      <Typography variant="headline" align={'center'} gutterBottom>
-           {title}
-         </Typography>
-        <Grid container className={'plugin_percentage'}>
-            <PluginPercentage  variant={this.state.variant}/>
-        </Grid>
-        <Typography variant="headline" align={'center'} gutterBottom>
-           Tips to improve your question
-         </Typography>
-         <Divider/>
-        <TipList/>
-      </React.Fragment>
-    )
+    // if(!this.state.type || this.state.type === 'RAW' || this.state.type === 'DISCRETIZED')
+    //   title = 'Probability of getting useful answer';
+    // if(this.state.type === 'DISCRETIZED_BY_USER')
+    //   title = 'Closeness to maximum improvement';
 
 
     dialog = (
       <Dialog
-       open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition} >
+       open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition}>
 
         <AppBar className={'app-bar-'+this.state.variant}>
           <Toolbar>
@@ -117,10 +93,26 @@ class Dashboard extends Component
           </Toolbar>
         </AppBar>
 
+        <div>
+          <Grid container alignContent={'space-between'} className={'dialog-content'}>
+            <Grid item className={'circle-percentage'}>
+              <PluginPercentage type={'DISCRETIZED_BY_USER'} variant={this.state.variant}/>
+            </Grid>
+            <Grid item className={'circle-percentage'}>
+              <PluginPercentage type={'RAW'} variant={this.state.variant}/>
+            </Grid>
 
-        <div className={'dialog-content'}>
-          {opt1}
+
+          </Grid>
+
+          <Typography variant="headline" align={'center'} gutterBottom>
+             Tips to improve your question
+          </Typography>
+          <Divider/>
+
+          <TipList/>
         </div>
+
       </Dialog>
     )
 

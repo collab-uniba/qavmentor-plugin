@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import {getPrediction} from '../../../../services';
-import {getPost} from '../../../../utils'
+import { getPrediction } from '../../../../services';
+import { getPost } from '../../../../utils'
 import store from '../../../../store.js'
 import { Circle } from 'rc-progress';
 
@@ -16,21 +16,15 @@ class PluginPercentage extends Component
     this.state = {
       "color": props.variant,
       "prediction": -1,
-      "type": !store.subject.type ? 0 : store.subject.type
+      "type": props.type
     };
 
-    store.on('change', function(change){
-        this.setState({
-          type: store.subject.type
-        })
-
-    }.bind(this))
 
   }
 
 
   componentWillReceiveProps(newProps) {
-      this.setState({color: newProps.variant});
+      this.setState({color: newProps.variant, type:newProps.type});
   }
 
 
@@ -45,7 +39,7 @@ class PluginPercentage extends Component
 
 
     return (
-      <div className={'circle-percentage'}>
+      <div>
           <div>
               <Circle percent={this.state.prediction} strokeWidth="5" trailWidth="5" strokeColor={color} width={150} />
               <div className="percentage">{ this.state.prediction } %</div>
