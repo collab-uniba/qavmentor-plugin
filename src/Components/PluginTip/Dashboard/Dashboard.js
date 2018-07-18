@@ -76,9 +76,9 @@ class Dashboard extends Component
     var title = ''
 
     if(!this.state.type || this.state.type === 'RAW' || this.state.type === 'DISCRETIZED')
-      title = 'Probability that your question will have a useful answer';
+      title = 'Probability of getting useful answer';
     if(this.state.type === 'DISCRETIZED_BY_USER')
-      title = 'Question completeness';
+      title = 'Closeness to maximum improvement';
 
     opt1 = (
       <React.Fragment>
