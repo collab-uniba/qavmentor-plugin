@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import PluginPercentage from './PluginPercentage/PluginPercentage';
+import PluginPercentageLinear from './PluginPercentageLinear/PluginPercentageLinear';
 import TipList from './TipList/TipList';
 
 import Dialog from '@material-ui/core/Dialog';
@@ -19,13 +20,12 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import './Dashboard.css';
 
+import store from '../../../store.js';
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -39,13 +39,25 @@ class Dashboard extends Component
     super(props);
     this.state = {
       "open": props.open,
-      "variant": props.variant
-    }
+      "variant": props.variant,
+      "type": !store.subject.type ? 0 : store.subject.type
+    };
+
+    store.on('change', function(change){
+        this.setState({
+          type: store.subject.type
+        })
+
+    }.bind(this))
   }
 
   componentWillReceiveProps(newProps) {
       this.setState({open: newProps.open, variant: newProps.variant});
   }
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
 
   handleOpen = () => {
     this.setState({ open: true});
@@ -59,42 +71,55 @@ class Dashboard extends Component
 
   render(){
     var dialog
-    var grid
+    var opt1
+    var opt2
+    var title = ''
 
-    grid = (
-      <Grid container >
-           <Grid item xs={24}>
-             <PluginPercentage className={'plugin_percentage'} variant={this.state.variant}/>
-           </Grid>
+    if(!this.state.type || this.state.type === 'RAW' || this.state.type === 'DISCRETIZED')
+      title = 'Probability that your question will have a useful answer';
+    if(this.state.type === 'DISCRETIZED_BY_USER')
+      title = 'Question completeness';
 
-           <Grid item xs={24}
-           style={{maxHeight: 300, overflow: 'auto'}} className={'tip-list-container'}>
-             <TipList/>
-           </Grid>
-
-      </Grid>
+    opt1 = (
+      <React.Fragment>
+      <Typography variant="headline" align={'center'} gutterBottom>
+           {title}
+         </Typography>
+        <Grid container className={'plugin_percentage'}>
+            <PluginPercentage  variant={this.state.variant}/>
+        </Grid>
+        <Typography variant="headline" align={'center'} gutterBottom>
+           Tips to improve your question
+         </Typography>
+         <Divider/>
+        <TipList/>
+      </React.Fragment>
     )
 
+
     dialog = (
-      <Dialog open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition}  className={'dialog-fragment'}>
+      <Dialog
+       open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition} >
+
         <AppBar className={'app-bar-'+this.state.variant}>
-          <Toolbar style={{padding: '4px'}}>
+          <Toolbar>
 
             <button className={'round-close-button-plugin-tip-'+this.state.variant} onClick={this.handleClose} aria-label="Close">
               <CloseIcon />
             </button>
-            <div className={'dialog-divider'}></div>
-            <div className={'dialog-title'}>
-              <Typography variant="title" color="inherit">
-                  Overview
+
+            <div>
+              <Typography variant="title" color="inherit" align={'center'}>
+                  Improve your question
               </Typography>
             </div>
 
           </Toolbar>
         </AppBar>
 
+
         <div className={'dialog-content'}>
-            {grid}
+          {opt1}
         </div>
       </Dialog>
     )

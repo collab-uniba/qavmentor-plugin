@@ -11,8 +11,7 @@ console.log(cookie_store)
 var store = observe(_store)
 if(cookie_store)
   store.subject = cookie_store;
-// store.set('modified', [])
-// store.set('user', {})
+
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   console.log('receveing store ')
   console.log(request.store)
@@ -34,12 +33,3 @@ store.on('change', function(change){
 
 })
 export default store;
-
-
-// chrome.storage.local.set({key: value}, function() {
-//   console.log('Value is set to ' + value);
-// });
-//
-// chrome.storage.local.get(['key'], function(result) {
-//   console.log('Value currently is ' + result.key);
-// });

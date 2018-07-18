@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
+
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,8 +11,6 @@ import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-import green from '@material-ui/core/colors/green';
-import amber from '@material-ui/core/colors/amber';
 
 import {getTips} from '../../services';
 import {getPost} from '../../utils'
@@ -25,9 +19,9 @@ import {getPrediction} from '../../services';
 import store from '../../store';
 import {countTipCategory} from '../../utils'
 import Dashboard from './Dashboard/Dashboard.js'
+import Badge from './Badge'
 
 import './PluginTip.css';
-
 
 
 const low_percentage = 20;
@@ -77,26 +71,38 @@ class PluginTip extends Component
 
 
   render() {
-    var plugin_tip = (
-      <React.Fragment>
-          <div className={"plugin_div_" +this.state.my_style }  onClick={this.openDashboard}>
-            <div className={"round_button-"+this.state.alert_type}>
-                <div className={'tip-number'}>
-                    {this.state.tips_count}
-                </div>
-            </div>
-          </div>
-          <Dashboard open={this.state.dashboard_open}
-           variant={this.state.alert_type}
-           toggleDashboard={this.toggleDashboard.bind(this)}/>
-      </React.Fragment>
-    )
 
-    return (
+    return(
       <React.Fragment>
-        { this.state.tips_count!=0 ? plugin_tip : null }
-      </React.Fragment>
-    )
+        <div className={"plugin_div_" +this.state.my_style } onClick={this.openDashboard}>
+          <Badge badgeContent={this.state.tips_count} color={this.state.alert_type}/>
+        </div>
+
+        <Dashboard open={this.state.dashboard_open}
+         variant={this.state.alert_type}
+         toggleDashboard={this.toggleDashboard.bind(this)}/>
+     </React.Fragment>
+   );
+    // var plugin_tip = (
+    //   <React.Fragment>
+    //       <div className={"plugin_div_" +this.state.my_style }  onClick={this.openDashboard}>
+    //         <div className={"round_button-"+this.state.alert_type}>
+    //             <div className={'tip-number'}>
+    //                 {this.state.tips_count}
+    //             </div>
+    //         </div>
+    //       </div>
+    //       <Dashboard open={this.state.dashboard_open}
+    //        variant={this.state.alert_type}
+    //        toggleDashboard={this.toggleDashboard.bind(this)}/>
+    //   </React.Fragment>
+    // )
+    //
+    // return (
+    //   <React.Fragment>
+    //     {plugin_tip}
+    //   </React.Fragment>
+    // )
   }
 
 
@@ -113,7 +119,7 @@ class PluginTip extends Component
     });
 
     getTips(getPost()).then(data => {
-      this.setState({"tips_count": countTipCategory(this.props.category, data)});
+      this.setState({"tips_count": countTipCategory('actionable', data)});
     });
 
     window.onkeydown = function()
@@ -129,13 +135,13 @@ class PluginTip extends Component
             this.setState({alert_type: "warning"})
           if(data>=medium_percentage)
             this.setState({ alert_type: "success"})
-
         });
 
         getTips(getPost()).then(data => {
-          console.log("_____________________"+this.props.category+" "+ data)
-          this.setState({"tips_count": countTipCategory(this.props.category, data)});
+          console.log( data);
+          this.setState({"tips_count": countTipCategory('actionable', data)});
         });
+
       }.bind(this), 1000)
     }.bind(this)
 

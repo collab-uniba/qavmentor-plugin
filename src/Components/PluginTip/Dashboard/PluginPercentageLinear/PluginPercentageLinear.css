@@ -6,7 +6,7 @@
   text-align: -webkit-center;
 }
 
-.circle-percentage {
-  padding-left: 30%;
-  padding-top: 5%;
+.line-percentage {
+  padding-bottom: 5% !important;
+  padding-top: 2% !important;
 }

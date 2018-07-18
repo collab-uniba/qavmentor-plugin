@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import CircularProgress from '../CircularProgress/CircularProgress.js';
 
 import {getPrediction} from '../../../../services';
 import {getPost} from '../../../../utils'
 import store from '../../../../store.js'
+import { Circle } from 'rc-progress';
 
 import './PluginPercentage.css';
 
@@ -35,40 +35,23 @@ class PluginPercentage extends Component
 
 
   render() {
-    var prediction_div
-    if(this.state.prediction === -1 || !this.state.prediction)
-    prediction_div = (
-      <div>
-          <CircularProgress color={'inherit'} variant="static" value={100} size={200} />
-          <div className="percentage">__</div>
-          <CircularProgress color={this.state.color} className={'top-percentage'} size={200} />
+    var color = '';
+    if(this.state.color === 'success')
+      color = '#00A047';
+    if(this.state.color === 'warning')
+      color = '#FF9A00';
+    if(this.state.color === 'error')
+      color = '#E41F2F';
+
+
+    return (
+      <div className={'circle-percentage'}>
+          <div>
+              <Circle percent={this.state.prediction} strokeWidth="5" trailWidth="5" strokeColor={color} width={150} />
+              <div className="percentage">{ this.state.prediction } %</div>
+          </div>
       </div>
-    )
-    else
-      prediction_div = (
-        <div>
-            <CircularProgress color={'inherit'} variant="static" value={100} size={200} />
-            <div className="percentage">{ this.state.prediction }</div>
-            <CircularProgress color={this.state.color} className={'top-percentage'} variant="static" value={ this.state.prediction } size={200}  />
-        </div>
-      )
-
-    var plugin_button
-
-    if(this.state.error){
-      plugin_button = (
-        <div>
-          {this.state.error}
-        </div>
-      )
-    }else{
-      plugin_button = (
-        <div>
-          {prediction_div}
-        </div>
-      )
-    }
-    return (plugin_button);
+    );
   }
 
 
