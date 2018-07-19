@@ -14,7 +14,6 @@ class PluginPercentage extends Component
   constructor(props) {
     super(props);
     this.state = {
-      "color": props.variant,
       "prediction": -1,
       "type": props.type
     };
@@ -24,28 +23,33 @@ class PluginPercentage extends Component
 
 
   componentWillReceiveProps(newProps) {
-      this.setState({color: newProps.variant, type:newProps.type});
+      this.setState({type:newProps.type});
   }
 
 
   render() {
+    const low_percentage = 20;
+    const medium_percentage = 50;
     var color = '';
-    if(this.state.color === 'success')
+    if(this.state.prediction > medium_percentage)
       color = '#00A047';
-    if(this.state.color === 'warning')
+    if(this.state.prediction >= low_percentage && this.state.prediction < medium_percentage)
       color = '#FF9A00';
-    if(this.state.color === 'error')
+    if(this.state.prediction < low_percentage)
       color = '#E41F2F';
 
 
-    return (
-      <div>
-          <div>
-              <Circle percent={this.state.prediction} strokeWidth="5" trailWidth="5" strokeColor={color} width={150} />
-              <div className="percentage">{ this.state.prediction } %</div>
-          </div>
-      </div>
+    var percentage = (
+        <div >
+            <Circle percent={this.state.prediction} strokeWidth="5" trailWidth="5"
+             strokeColor={color} width={150} style={{marginLeft:'7%'}}/>
+            <div className="percentage">{ this.state.prediction } %</div>
+        </div>
+
     );
+
+    var prediction = this.state.prediction
+    return (<div style={{alignItems: 'center'}}>{prediction!==-1 ? percentage : null} </div>);
   }
 
 

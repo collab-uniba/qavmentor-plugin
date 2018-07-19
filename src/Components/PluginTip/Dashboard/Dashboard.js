@@ -75,7 +75,7 @@ class Dashboard extends Component
 
     dialog = (
       <Dialog
-       open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition}>
+       open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition} >
 
         <AppBar className={'app-bar-'+this.state.variant}>
           <Toolbar>
@@ -94,12 +94,18 @@ class Dashboard extends Component
         </AppBar>
 
         <div>
-          <Grid container alignContent={'space-between'} className={'dialog-content'}>
+          <Grid container alignContent={'space-between'} wrap='nowrap' className={'dialog-content'} >
             <Grid item className={'circle-percentage'}>
-              <PluginPercentage type={'DISCRETIZED_BY_USER'} variant={this.state.variant}/>
+              <PluginPercentage type={'DISCRETIZED_BY_USER'} />
+              <Typography  align={'center'} >
+                Closeness to maximum improvement
+              </Typography>
             </Grid>
             <Grid item className={'circle-percentage'}>
-              <PluginPercentage type={'RAW'} variant={this.state.variant}/>
+              <PluginPercentage type={'RAW'}/>
+              <Typography   align={'center'} >
+                Probability of getting useful answer
+              </Typography>
             </Grid>
 
 
