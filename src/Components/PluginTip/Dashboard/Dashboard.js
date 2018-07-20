@@ -4,6 +4,9 @@ import PluginPercentage from './PluginPercentage/PluginPercentage';
 import TipList from './TipList/TipList';
 
 import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+
 
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
@@ -67,47 +70,41 @@ class Dashboard extends Component
     var normalized
     var title = ''
 
-    // if(!this.state.type || this.state.type === 'RAW' || this.state.type === 'DISCRETIZED')
-    //   title = 'Probability of getting useful answer';
-    // if(this.state.type === 'DISCRETIZED_BY_USER')
-    //   title = 'Closeness to maximum improvement';
-
-
     dialog = (
       <Dialog
        open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition} >
 
         <AppBar className={'app-bar-'+this.state.variant}>
           <Toolbar>
-
             <button className={'round-close-button-plugin-tip-'+this.state.variant} onClick={this.handleClose} aria-label="Close">
               <CloseIcon />
             </button>
-
-            <div>
-              <Typography variant="title" color="inherit" align={'center'}>
-                  Improve your question
-              </Typography>
-            </div>
-
+            <Typography variant="display1" color="inherit" align={'center'}>
+                Improve your question
+            </Typography>
           </Toolbar>
         </AppBar>
 
-        <div>
-          <Grid container alignContent={'space-between'} wrap='nowrap' className={'dialog-content'} >
+        <DialogContent className={'dialog-content'} >
+          <Grid container alignContent={'space-between'} wrap='nowrap'>
+
             <Grid item className={'circle-percentage'}>
-              <PluginPercentage type={'DISCRETIZED_BY_USER'} />
-              <Typography  align={'center'} >
-                Closeness to maximum improvement
-              </Typography>
-            </Grid>
-            <Grid item className={'circle-percentage'}>
-              <PluginPercentage type={'RAW'}/>
-              <Typography   align={'center'} >
-                Probability of getting useful answer
-              </Typography>
+              <PluginPercentage type={'DISCRETIZED_BY_USER'} marginLeft={'8'}/>
+              <DialogContentText >
+                <Typography  align={'center'} style={{marginTop: '-15%'}}>
+                  Closeness to maximum improvement
+                </Typography>
+              </DialogContentText>
             </Grid>
 
+            <Grid item className={'circle-percentage'}>
+              <PluginPercentage type={'RAW'} marginLeft={'6'}/>
+              <DialogContentText >
+                <Typography   align={'center'} style={{marginTop: '-15%'}} >
+                  Probability of getting useful answer
+                </Typography>
+              </DialogContentText>
+            </Grid>
 
           </Grid>
 
@@ -117,7 +114,7 @@ class Dashboard extends Component
           <Divider/>
 
           <TipList/>
-        </div>
+        </DialogContent>
 
       </Dialog>
     )

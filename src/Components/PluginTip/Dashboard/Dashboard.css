@@ -91,18 +91,12 @@
 
 .dialog-content {
   margin-top: 13% !important;
-  margin-bottom: 8%;
 }
 
 
 .circle-percentage {
-  padding-left: 7%;
-  padding-right: 7%;
-  padding-top: 7%;
-}
-
-
-.plugin_percentage {
-  padding-left: 190px;
-  padding-right: 300px;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 4%;
+  padding-bottom: 10%;
 }

@@ -15,7 +15,8 @@ class PluginPercentage extends Component
     super(props);
     this.state = {
       "prediction": -1,
-      "type": props.type
+      "type": props.type,
+      "marginLeft": props.marginLeft
     };
 
 
@@ -23,7 +24,7 @@ class PluginPercentage extends Component
 
 
   componentWillReceiveProps(newProps) {
-      this.setState({type:newProps.type});
+      this.setState({type:newProps.type, marginLeft: newProps.marginLeft});
   }
 
 
@@ -42,7 +43,7 @@ class PluginPercentage extends Component
     var percentage = (
         <div >
             <Circle percent={this.state.prediction} strokeWidth="5" trailWidth="5"
-             strokeColor={color} width={150} style={{marginLeft:'7%'}}/>
+             strokeColor={color} width={150} style={{marginLeft:this.state.marginLeft+'%'}}/>
             <div className="percentage">{ this.state.prediction } %</div>
         </div>
 
