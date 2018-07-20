@@ -122,15 +122,20 @@ class PluginTip extends Component
       this.setState({"tips_count": countTipCategory('actionable', data)});
     });
 
+    var textarea = document.getElementById('wmd-input');
+    var textarea_box = textarea.getBoundingClientRect();
+    var container = document.getElementById('plugin-container')
+
+    container.style.left = (textarea_box.width - 35)+'px',
+    container.style.top = (textarea_box.height + 35)+'px'
+
     window.addEventListener('resize', function(event){
       var textarea = document.getElementById('wmd-input');
       var textarea_box = textarea.getBoundingClientRect();
       var container = document.getElementById('plugin-container')
 
-      container.style.left = (textarea_box.width )+'px',
-      container.style.top = (textarea_box.height)+'px'
-
-
+      container.style.left = (textarea_box.width - 35)+'px',
+      container.style.top = (textarea_box.height + 35)+'px'
     });
 
 
