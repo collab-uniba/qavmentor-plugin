@@ -73,15 +73,15 @@ class PluginTip extends Component
   render() {
 
     return(
-      <React.Fragment>
-        <div className={"plugin_div_" +this.state.my_style } onClick={this.openDashboard}>
+      <div id='plugin-container' className={"plugin_div_" +this.state.my_style }>
+        <div onClick={this.openDashboard}>
           <Badge badgeContent={this.state.tips_count} color={this.state.alert_type}/>
         </div>
 
         <Dashboard open={this.state.dashboard_open}
          variant={this.state.alert_type}
          toggleDashboard={this.toggleDashboard.bind(this)}/>
-     </React.Fragment>
+     </div>
    );
     // var plugin_tip = (
     //   <React.Fragment>
@@ -122,13 +122,24 @@ class PluginTip extends Component
       this.setState({"tips_count": countTipCategory('actionable', data)});
     });
 
+    window.addEventListener('resize', function(event){
+      var textarea = document.getElementById('wmd-input');
+      var textarea_box = textarea.getBoundingClientRect();
+      var container = document.getElementById('plugin-container')
+
+      container.style.left = (textarea_box.width )+'px',
+      container.style.top = (textarea_box.height)+'px'
+
+
+    });
+
+
     window.onkeydown = function()
     {
       clearTimeout(this.timer);
       this.timer = setTimeout(function()
       {
         getPrediction(getPost(), this.state.type).then(data => {
-          console.log(data, this.state.type)
           if(data<low_percentage)
             this.setState({alert_type: "error"})
           if(data>=low_percentage && data<medium_percentage)
@@ -138,7 +149,6 @@ class PluginTip extends Component
         });
 
         getTips(getPost()).then(data => {
-          console.log( data);
           this.setState({"tips_count": countTipCategory('actionable', data)});
         });
 

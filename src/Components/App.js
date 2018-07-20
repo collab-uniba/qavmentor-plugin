@@ -54,6 +54,7 @@ class App extends Component
 
         body.parentNode.insertBefore(plugin_tip_body, body.nextSibling);
         ReactDOM.render(<PluginTip attached_to={body_id} my_style={body_id}category={'body'}/>, document.getElementById('plugin_tip_body'));
+
         //
         // tags.parentNode.insertBefore(plugin_tip_tag, tags.nextSibling);
         // ReactDOM.render(<PluginTip attached_to={tags_id} my_style={tags_id} category={'tag'}/> , document.getElementById('plugin_tip_tag'));
