@@ -83,30 +83,12 @@ class PluginTip extends Component
          toggleDashboard={this.toggleDashboard.bind(this)}/>
      </div>
    );
-    // var plugin_tip = (
-    //   <React.Fragment>
-    //       <div className={"plugin_div_" +this.state.my_style }  onClick={this.openDashboard}>
-    //         <div className={"round_button-"+this.state.alert_type}>
-    //             <div className={'tip-number'}>
-    //                 {this.state.tips_count}
-    //             </div>
-    //         </div>
-    //       </div>
-    //       <Dashboard open={this.state.dashboard_open}
-    //        variant={this.state.alert_type}
-    //        toggleDashboard={this.toggleDashboard.bind(this)}/>
-    //   </React.Fragment>
-    // )
-    //
-    // return (
-    //   <React.Fragment>
-    //     {plugin_tip}
-    //   </React.Fragment>
-    // )
+
   }
 
 
   componentDidMount() {
+    //gets executed when the element gets created
     getPrediction(getPost(), this.state.type).then(data => {
       if(data<low_percentage)
         this.setState({alert_type: "error"})
@@ -121,14 +103,14 @@ class PluginTip extends Component
     getTips(getPost()).then(data => {
       this.setState({"tips_count": countTipCategory('actionable', data)});
     });
-
     var textarea = document.getElementById('wmd-input');
     var textarea_box = textarea.getBoundingClientRect();
     var container = document.getElementById('plugin-container')
-
     container.style.left = (textarea_box.width - 35)+'px',
     container.style.top = (textarea_box.height + 35)+'px'
 
+
+    //executes the same things above when certain events occur
     window.addEventListener('resize', function(event){
       var textarea = document.getElementById('wmd-input');
       var textarea_box = textarea.getBoundingClientRect();
@@ -137,7 +119,6 @@ class PluginTip extends Component
       container.style.left = (textarea_box.width - 35)+'px',
       container.style.top = (textarea_box.height + 35)+'px'
     });
-
 
     window.onkeydown = function()
     {
