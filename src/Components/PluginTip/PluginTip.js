@@ -106,7 +106,7 @@ class PluginTip extends Component
     var textarea = document.getElementById('wmd-input');
     var textarea_box = textarea.getBoundingClientRect();
     var container = document.getElementById('plugin-container')
-    container.style.left = (textarea_box.width - 35)+'px',
+    container.style.left = (textarea_box.width - 40)+'px',
     container.style.top = (textarea_box.height + 35)+'px'
 
 
@@ -116,7 +116,7 @@ class PluginTip extends Component
       var textarea_box = textarea.getBoundingClientRect();
       var container = document.getElementById('plugin-container')
 
-      container.style.left = (textarea_box.width - 35)+'px',
+      container.style.left = (textarea_box.width - 40)+'px',
       container.style.top = (textarea_box.height + 35)+'px'
     });
 
