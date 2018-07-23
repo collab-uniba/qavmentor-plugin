@@ -8,9 +8,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
+import Switch from '@material-ui/core/Switch';
 
-import { CheckCircle, Error, Warning } from '@material-ui/icons';
+import { CheckCircle, Error, Warning, Done, Clear } from '@material-ui/icons';
 
 
 import {getTips} from '../../../../services';
@@ -25,13 +25,75 @@ class TipList extends Component
   constructor(props) {
       super(props);
       this.state = {
-        tip_list: []
+        tip_list: [],
+        checkedA: true
       }
   };
 
 
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.checked });
+  };
+
   render() {
-    return (
+
+    var fede = (
+      <div className={'tip-list'}>
+        <List component="nav">
+        {this.state.tip_list.map(function(d){
+          if(d.found){
+            return (
+              <React.Fragment>
+                   <ListItem button className={'tooltip'}>
+
+                      <Done style={{color:'green'}}/>
+
+                    <ListItemText primary={d.title} />
+                    <span class="tooltiptext">Actionable</span>
+
+                   </ListItem>
+                   <Divider/>
+              </React.Fragment>
+            );
+          }else{
+            if(d.category==='actionable'){
+              return (
+                <React.Fragment>
+                     <ListItem button className={'tooltip'}>
+
+                       <Clear color={'error'}/>
+
+                      <ListItemText primary={d.title} />
+                      <span class="tooltiptext">Actionable</span>
+
+                     </ListItem>
+                     <Divider/>
+                </React.Fragment>
+              );
+            }else{
+              return (
+                <React.Fragment>
+
+                     <ListItem button className={'tooltip'}>
+                       <Clear color={'error'}/>
+
+                      <ListItemText primary={d.title} /><Warning style={{color:'#FF9A00'}} />
+                      <span class="tooltiptext">Actionable</span>
+
+                     </ListItem>
+                     <Divider/>
+                </React.Fragment>
+              );
+            }
+
+
+         }
+         })}
+       </List>
+      </div>
+    );
+
+    var luigi = (
       <div className={'tip-list'}>
         <List component="nav">
         {this.state.tip_list.map(function(d){
@@ -84,6 +146,18 @@ class TipList extends Component
 
        </List>
       </div>
+    );
+    return (
+
+      <React.Fragment>
+        <Switch
+          checked={this.state.checkedA}
+          onChange={this.handleChange('checkedA')}
+          value="checkedA"
+        />
+        {this.state.checkedA===true ? luigi : fede}
+
+      </React.Fragment>
     );
   }
 
