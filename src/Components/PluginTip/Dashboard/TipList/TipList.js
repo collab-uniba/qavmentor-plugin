@@ -8,8 +8,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
 
-import { Done, Close } from '@material-ui/icons';
+import { CheckCircle, Error, Warning } from '@material-ui/icons';
 
 
 import {getTips} from '../../../../services';
@@ -38,20 +39,46 @@ class TipList extends Component
             return (
               <React.Fragment>
                    <ListItem button>
-                   <Done style={{color:'green'}}/>  <ListItemText primary={d.title} /><Chip label={d.category}/>
+                    <div  className={'tooltip'}>
+                      <CheckCircle style={{color:'green'}}/>
+                      <span class="tooltiptext">Actionable</span>
+                    </div>
+                    <ListItemText primary={d.title} />
                    </ListItem>
                    <Divider/>
               </React.Fragment>
             );
           }else{
-            return (
-              <React.Fragment>
-                   <ListItem button>
-                   <Close color={'error'}/>  <ListItemText primary={d.title} /><Chip label={d.category}/>
-                   </ListItem>
-                   <Divider/>
-              </React.Fragment>
-            );
+            if(d.category == 'actionable')
+            {
+              return (
+                <React.Fragment>
+                     <ListItem button>
+                     <div  className={'tooltip'}>
+                       <Error color={'error'}/>
+                       <span class="tooltiptext">Actionable</span>
+                     </div>
+                      <ListItemText primary={d.title} />
+                     </ListItem>
+                     <Divider/>
+                </React.Fragment>
+              );
+            }
+            else{
+              return (
+                <React.Fragment>
+                     <ListItem button>
+                     <div className={'tooltip'}>
+                       <Warning style={{color:'#FF9A00'}} />
+                       <span class="tooltiptext">Non actionable</span>
+                     </div>
+                      <ListItemText primary={d.title} />
+                     </ListItem>
+                     <Divider/>
+                </React.Fragment>
+              );
+            }
+
          }
          })}
 

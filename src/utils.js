@@ -20,8 +20,7 @@ export function getPost(){
       "body": html_question_inner,
       "title":title.value,
       "tags": tag.value.split(" "),
-      "reputation": reputation,
-      "modified": store.subject.modified
+      "reputation": reputation
   }
 }
 
