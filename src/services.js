@@ -55,6 +55,7 @@ export function getSOUser(id) {
 export function getTips(data) {
   var req = axios.post(api_url+'/getTip',data)
     .then( (response) => {
+          console.log(response.data)
           return response.data
         })
     .catch( (error) => {

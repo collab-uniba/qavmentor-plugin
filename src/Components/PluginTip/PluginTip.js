@@ -83,31 +83,12 @@ class PluginTip extends Component
          toggleDashboard={this.toggleDashboard.bind(this)}/>
      </React.Fragment>
    );
-    // var plugin_tip = (
-    //   <React.Fragment>
-    //       <div className={"plugin_div_" +this.state.my_style }  onClick={this.openDashboard}>
-    //         <div className={"round_button-"+this.state.alert_type}>
-    //             <div className={'tip-number'}>
-    //                 {this.state.tips_count}
-    //             </div>
-    //         </div>
-    //       </div>
-    //       <Dashboard open={this.state.dashboard_open}
-    //        variant={this.state.alert_type}
-    //        toggleDashboard={this.toggleDashboard.bind(this)}/>
-    //   </React.Fragment>
-    // )
-    //
-    // return (
-    //   <React.Fragment>
-    //     {plugin_tip}
-    //   </React.Fragment>
-    // )
+
   }
 
 
   componentDidMount() {
-    getPrediction(getPost(), this.state.type).then(data => {
+    getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
       if(data<low_percentage)
         this.setState({alert_type: "error"})
 
@@ -127,8 +108,7 @@ class PluginTip extends Component
       clearTimeout(this.timer);
       this.timer = setTimeout(function()
       {
-        getPrediction(getPost(), this.state.type).then(data => {
-          console.log(data, this.state.type)
+        getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
           if(data<low_percentage)
             this.setState({alert_type: "error"})
           if(data>=low_percentage && data<medium_percentage)
@@ -138,7 +118,6 @@ class PluginTip extends Component
         });
 
         getTips(getPost()).then(data => {
-          console.log( data);
           this.setState({"tips_count": countTipCategory('actionable', data)});
         });
 
