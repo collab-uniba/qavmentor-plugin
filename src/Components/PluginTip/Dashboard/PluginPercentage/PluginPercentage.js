@@ -44,7 +44,7 @@ class PluginPercentage extends Component
         <div >
             <Circle percent={this.state.prediction} strokeWidth="5" trailWidth="5"
              strokeColor={color} width={150} style={{marginLeft:this.state.marginLeft+'%'}}/>
-            <div className="percentage">{ this.state.prediction } %</div>
+            <div className="percentage">{ this.state.prediction }%</div>
         </div>
 
     );
