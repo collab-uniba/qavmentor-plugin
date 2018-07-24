@@ -101,7 +101,7 @@ class Dashboard extends Component
               <PluginPercentage type={'RAW'} marginLeft={'6'}/>
               <DialogContentText >
                 <Typography   align={'center'} style={{marginTop: '-15%'}} >
-                  Probability of getting useful answer
+                  Probability of getting a useful answer
                 </Typography>
               </DialogContentText>
             </Grid>
