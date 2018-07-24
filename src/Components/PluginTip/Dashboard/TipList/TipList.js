@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-
-import { Done, Close } from '@material-ui/icons';
 
 
 import {getTips} from '../../../../services';

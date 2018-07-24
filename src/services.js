@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const stackexchange_api = 'https://api.stackexchange.com/2.2/users/'
 const api_url = 'https://qavmentor.uniba.it'
-const local_url = 'https://localhost'
+// const local_url = 'https://localhost'
 var n_req_made = 0
 var max_req = 100
 
@@ -19,7 +19,7 @@ export function getPrediction(data,type) {
 
   var req = axios.post(api_url+endpoint,data)
     .then( (response) => {
-          return parseInt(parseFloat(response.data.prediction))
+          return parseInt(parseFloat(response.data.prediction), 10);
         })
     .catch( (error) => {
       if(n_req_made < max_req)

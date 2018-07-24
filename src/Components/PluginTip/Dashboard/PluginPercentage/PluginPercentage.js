@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import { getPrediction } from '../../../../services';
 import { getPost } from '../../../../utils'
-import store from '../../../../store.js'
 import { Circle } from 'rc-progress';
 
 import './PluginPercentage.css';

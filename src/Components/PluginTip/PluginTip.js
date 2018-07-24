@@ -1,16 +1,4 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
-
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-
 
 import {getTips} from '../../services';
 import {getPost} from '../../utils'
@@ -26,10 +14,7 @@ import './PluginTip.css';
 
 const low_percentage = 20;
 const medium_percentage = 50;
-//const high_percentage = 50;
-const low_msg = "low";
-const medium_msg = "medium";
-const high_msg = "high";
+
 
 
 class PluginTip extends Component
