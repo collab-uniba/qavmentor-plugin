@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import Tip from './Tip/Tip.js'
+// import Tip from './Tip/Tip.js'
 import PluginTip from './PluginTip/PluginTip.js'
 import ReactDOM from 'react-dom';
 
-import store from '../store';
+// import store from '../store';
 
 class App extends Component
 {
-
-  constructor()
-  {
-    super();
-  }
+  //
+  // constructor()
+  // {
+  //   super();
+  // }
 
   render(){return(<div></div>)}
 
@@ -19,23 +19,23 @@ class App extends Component
 
   componentDidMount() {
         const body_id = 'wmd-input';
-        const title_id = 'title';
-        const tags_id = 'tag-editor';
-        const content_id = 'header';
+        // const title_id = 'title';
+        // const tags_id = 'tag-editor';
+        // const content_id = 'header';
 
         const body = document.getElementById(body_id);
-        const title = document.getElementById(title_id);
-        const tags = document.getElementsByClassName(tags_id)[0].childNodes[1]
-        const content = document.getElementsByTagName(content_id)[0]
+        // const title = document.getElementById(title_id);
+        // const tags = document.getElementsByClassName(tags_id)[0].childNodes[1]
+        // const content = document.getElementsByTagName(content_id)[0]
 
-        const plugin_tip_title = document.createElement('div');
+        // const plugin_tip_title = document.createElement('div');
         const plugin_tip_body = document.createElement('div');
-        const plugin_tip_tag = document.createElement('div');
+        // const plugin_tip_tag = document.createElement('div');
 
-        tags.id = 'tags'
-        plugin_tip_title.id = 'plugin_tip_title';
+        // tags.id = 'tags'
+        // plugin_tip_title.id = 'plugin_tip_title';
         plugin_tip_body.id = 'plugin_tip_body';
-        plugin_tip_tag.id = 'plugin_tip_tag';
+        // plugin_tip_tag.id = 'plugin_tip_tag';
 
         // const tip = document.createElement('div');
         // tip.id = 'tip';

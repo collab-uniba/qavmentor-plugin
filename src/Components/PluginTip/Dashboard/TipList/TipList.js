@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 
-import Typography from '@material-ui/core/Typography';
-import Chip from '@material-ui/core/Chip';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Switch from '@material-ui/core/Switch';
 
 import { WbIncandescent, Done } from '@material-ui/icons';
+
 
 
 import {getTips} from '../../../../services';
@@ -40,15 +37,10 @@ class TipList extends Component
     return (
 
       <React.Fragment>
-        <Switch
-          checked={this.state.checkedA}
-          onChange={this.handleChange('checkedA')}
-          value="checkedA"
-        />
         <div className={'tip-list'}>
           <List component="nav">
           {this.state.tip_list.map(function(d){
-            if(d.found){
+            if(!d.found){
               //                      <span class="tooltiptext">Actionable</span>
               return (
                 <React.Fragment>
@@ -75,7 +67,11 @@ class TipList extends Component
            })}
          </List>
         </div>
-
+        <Switch
+          checked={this.state.checkedA}
+          onChange={this.handleChange('checkedA')}
+          value="checkedA"
+        />
       </React.Fragment>
     );
   }
@@ -85,15 +81,15 @@ class TipList extends Component
     getTips(getPost()).then(data => {
       var new_list = [];
       for (var i = 0; i < data.length; i++) {
-        if(data[i].found === false)
+        if(data[i].found === true)
         {
           new_list.push(data[i]);
         }
       }
-      for (var i = 0; i < data.length; i++) {
-        if(data[i].found === true)
+      for (var j = 0; j < data.length; j++) {
+        if(data[j].found === false)
         {
-          new_list.push(data[i]);
+          new_list.push(data[j]);
         }
       }
       this.setState({

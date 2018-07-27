@@ -29,6 +29,8 @@ window.onload = function()
         body.appendChild(qavmentor_app);
         ReactDOM.render(<App/>, document.getElementById('qavmentor-root'));
     });
-  }catch(Error){}
+  }catch(Error){
+    console.log('You are not logged in the site')
+  }
 
 }

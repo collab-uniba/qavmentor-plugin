@@ -94,8 +94,9 @@
 }
 
 
-
-.plugin_percentage {
-  padding-left: 190px;
-  padding-right: 300px;
+.circle-percentage {
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 4%;
+  padding-bottom: 10%;
 }
