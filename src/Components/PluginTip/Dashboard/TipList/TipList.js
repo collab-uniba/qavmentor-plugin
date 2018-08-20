@@ -4,7 +4,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import Switch from '@material-ui/core/Switch';
 
 import { WbIncandescent, Done } from '@material-ui/icons';
 
@@ -22,18 +21,13 @@ class TipList extends Component
   constructor(props) {
       super(props);
       this.state = {
-        tip_list: [],
-        checkedA: true
+        tip_list: []
       }
   };
 
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
 
   render() {
-    var checked = this.state.checkedA;
     return (
 
       <React.Fragment>
@@ -41,19 +35,16 @@ class TipList extends Component
           <List component="nav">
           {this.state.tip_list.map(function(d){
             if(!d.found){
-              //                      <span class="tooltiptext">Actionable</span>
               return (
                 <React.Fragment>
                      <ListItem button disabled className={'tooltip'}>
-                        {checked===true ? <WbIncandescent style={{transform: 'rotate(180deg)'}}/> : <Done/>}
+                        <Done/>
                         <ListItemText primary={d.title} />
                      </ListItem>
                      <Divider/>
                 </React.Fragment>
               );
             }else{
-              //                        <span class="tooltiptext">Actionable</span>
-
                 return (
                   <React.Fragment>
                        <ListItem button className={'tooltip'}>
@@ -67,11 +58,6 @@ class TipList extends Component
            })}
          </List>
         </div>
-        <Switch
-          checked={this.state.checkedA}
-          onChange={this.handleChange('checkedA')}
-          value="checkedA"
-        />
       </React.Fragment>
     );
   }

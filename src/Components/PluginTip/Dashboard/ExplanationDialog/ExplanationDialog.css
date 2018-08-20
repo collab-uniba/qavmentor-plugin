@@ -1,0 +1,10 @@
+.help-button {
+  background: #ffffff00;
+  color: #d9d9d9;
+  display: contents;
+  border: none;
+  box-shadow: none;
+}
+.help-button:hover {
+  color: #c5c5c5;
+}

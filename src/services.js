@@ -67,5 +67,22 @@ export function getTips(data) {
     }
   );
   return req
+}
 
+
+
+export function getExplanation(about) {
+  var req = axios.get(api_url+'/getExplanation/'+about)
+    .then( (response) => {
+          return response.data //title, body
+        })
+    .catch( (error) => {
+      if(n_req_made < max_req)
+      {
+        n_req_made += 1
+        getExplanation(about)
+      }else Promise.reject(error.response);
+    }
+  );
+  return req
 }
