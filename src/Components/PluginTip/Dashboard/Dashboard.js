@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import PluginPercentage from './PluginPercentage/PluginPercentage';
 import TipList from './TipList/TipList';
+import ExplanationDialog from './ExplanationDialog/ExplanationDialog';
+
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -16,6 +18,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Grid from '@material-ui/core/Grid';
 
+
+
 import './Dashboard.css';
 
 
@@ -25,15 +29,14 @@ function Transition(props) {
 
 class Dashboard extends Component
 {
-
   constructor(props)
   {
     super(props);
     this.state = {
       "open": props.open,
+      "explanation_open": false,
       "variant": props.variant,
     };
-
   }
 
   componentWillReceiveProps(newProps) {
@@ -76,6 +79,8 @@ class Dashboard extends Component
           <Grid container alignContent={'space-between'} wrap='nowrap'>
 
             <Grid item className={'circle-percentage'}>
+              <ExplanationDialog about={"reputation_percentage"}/>
+
               <PluginPercentage type={'DISCRETIZED_BY_USER'} marginLeft={'8'}/>
               <DialogContentText >
                 <Typography  align={'center'} style={{marginTop: '-15%'}}>
@@ -85,9 +90,12 @@ class Dashboard extends Component
             </Grid>
 
             <Grid item className={'circle-percentage'}>
+              <ExplanationDialog about={"raw_percentage"}/>
+
               <PluginPercentage type={'RAW'} marginLeft={'6'}/>
+
               <DialogContentText >
-                <Typography   align={'center'} style={{marginTop: '-15%'}} >
+                <Typography  align={'center'} style={{marginTop: '-15%'}} >
                   Probability of getting a useful answer
                 </Typography>
               </DialogContentText>

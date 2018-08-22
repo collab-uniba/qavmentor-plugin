@@ -8,9 +8,7 @@
 	"default_popup": "index.html"
    },
   "permissions": [
-    "https://stackoverflow.com/questions/ask*",
-    "tabs",
-    "storage"
+    "https://stackoverflow.com/questions/ask*"
   ],
   "content_scripts": [
     {

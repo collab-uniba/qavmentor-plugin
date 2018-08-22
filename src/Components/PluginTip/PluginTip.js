@@ -58,15 +58,15 @@ class PluginTip extends Component
   render() {
 
     return(
-      <React.Fragment>
-        <div className={"plugin_div_" +this.state.my_style } onClick={this.openDashboard}>
+      <div id='plugin-container' className={"plugin_div_" +this.state.my_style }>
+        <div onClick={this.openDashboard}>
           <Badge badgeContent={this.state.tips_count} color={this.state.alert_type}/>
         </div>
 
         <Dashboard open={this.state.dashboard_open}
          variant={this.state.alert_type}
          toggleDashboard={this.toggleDashboard.bind(this)}/>
-     </React.Fragment>
+     </div>
    );
 
   }
@@ -86,6 +86,22 @@ class PluginTip extends Component
 
     getTips(getPost()).then(data => {
       this.setState({"tips_count": countTipCategory('actionable', data)});
+    });
+    var textarea = document.getElementById('wmd-input');
+    var textarea_box = textarea.getBoundingClientRect();
+    var container = document.getElementById('plugin-container')
+    container.style.left = (textarea_box.width - 40)+'px';
+    container.style.top = (textarea_box.height + 35)+'px';
+
+
+    //executes the same things above when certain events occur
+    window.addEventListener('resize', function(event){
+      var textarea = document.getElementById('wmd-input');
+      var textarea_box = textarea.getBoundingClientRect();
+      var container = document.getElementById('plugin-container')
+
+      container.style.left = (textarea_box.width - 40)+'px';
+      container.style.top = (textarea_box.height + 35)+'px';
     });
 
     window.onkeydown = function()
