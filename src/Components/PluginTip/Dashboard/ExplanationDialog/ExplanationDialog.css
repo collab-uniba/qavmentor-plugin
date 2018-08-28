@@ -1,9 +1,9 @@
 .help-button {
-  background: #ffffff00;
-  color: #d9d9d9;
-  display: contents;
-  border: none;
-  box-shadow: none;
+  background: #ffffff00 !important;
+  color: #d9d9d9 !important;
+  display: contents !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 .help-button:hover {
   color: #c5c5c5;

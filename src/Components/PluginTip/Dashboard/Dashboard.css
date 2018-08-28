@@ -17,14 +17,14 @@
 
 /*error*/
 .round-close-button-plugin-tip-error {
-    padding: 10px 10px;
-    margin-right: 5px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
-    box-shadow: none;
-    border: none;
-    background: transparent;
+    padding: 10px 10px !important;
+    margin-right: 5px !important;
+    -moz-border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    border-radius: 50px !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
 }
 
 .round-close-button-plugin-tip-error:hover {
@@ -41,14 +41,14 @@
 
 /*warning*/
 .round-close-button-plugin-tip-warning {
-    padding: 10px 10px;
-    margin-right: 5px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
-    box-shadow: none;
-    border: none;
-    background: transparent;
+    padding: 10px 10px !important;
+    margin-right: 5px !important;
+    -moz-border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    border-radius: 50px !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
 }
 
 .round-close-button-plugin-tip-warning:hover {
@@ -65,14 +65,14 @@
 
 /*success*/
 .round-close-button-plugin-tip-success {
-    padding: 10px 10px;
-    margin-right: 5px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
-    box-shadow: none;
-    border: none;
-    background: transparent;
+    padding: 10px 10px !important;
+    margin-right: 5px !important;
+    -moz-border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    border-radius: 50px !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
 }
 
 .round-close-button-plugin-tip-success:hover {
