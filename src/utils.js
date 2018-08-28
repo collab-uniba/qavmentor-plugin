@@ -25,11 +25,11 @@ export function getPost(){
 }
 
 
-export function countTipCategory(category, tip_list) {
+export function countFoundTip(tip_list) {
   var count = 0;
   if(tip_list)
     for (var i = 0; i < tip_list.length; i++) {
-      if(tip_list[i].category === category){
+      if(tip_list[i].found === true){
         count+=1;
       }
     }

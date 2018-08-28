@@ -5,7 +5,7 @@ import {getPost} from '../../utils'
 import {getPrediction} from '../../services';
 
 import store from '../../store';
-import {countTipCategory} from '../../utils'
+import {countFoundTip} from '../../utils'
 import Dashboard from './Dashboard/Dashboard.js'
 import Badge from './Badge'
 
@@ -85,7 +85,7 @@ class PluginTip extends Component
     });
 
     getTips(getPost()).then(data => {
-      this.setState({"tips_count": countTipCategory('actionable', data)});
+      this.setState({"tips_count": countFoundTip(data)});
     });
     var textarea = document.getElementById('wmd-input');
     var textarea_box = textarea.getBoundingClientRect();
@@ -119,7 +119,7 @@ class PluginTip extends Component
         });
 
         getTips(getPost()).then(data => {
-          this.setState({"tips_count": countTipCategory('actionable', data)});
+          this.setState({"tips_count": countFoundTip(data)});
         });
 
       }.bind(this), 1000)
