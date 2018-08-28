@@ -25,6 +25,12 @@ export function getPost(){
 }
 
 
+export function startAnalyzing() {
+  var post = getPost();
+  return (post.title.length!=0&&post.body.length!=0);
+}
+
+
 export function countFoundTip(tip_list) {
   var count = 0;
   if(tip_list)

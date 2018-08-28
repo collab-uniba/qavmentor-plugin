@@ -79,7 +79,7 @@ class Dashboard extends Component
           <Grid container alignContent={'space-between'} wrap='nowrap'>
 
             <Grid item className={'circle-percentage'}>
-              <ExplanationDialog about={"reputation_percentage"}/>
+              <ExplanationDialog about={"percentage_improvements"}/>
 
               <PluginPercentage type={'DISCRETIZED_BY_USER'} marginLeft={'8'}/>
               <DialogContentText >
@@ -90,7 +90,7 @@ class Dashboard extends Component
             </Grid>
 
             <Grid item className={'circle-percentage'}>
-              <ExplanationDialog about={"raw_percentage"}/>
+              <ExplanationDialog about={"probability_usefull_answer"}/>
 
               <PluginPercentage type={'RAW'} marginLeft={'6'}/>
 

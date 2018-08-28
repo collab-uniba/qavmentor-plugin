@@ -1,0 +1,75 @@
+
+
+
+
+/*error*/
+.round-close-button-tip-error {
+    padding: 10px 10px !important;
+    margin-right: 5px !important;
+    -moz-border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    border-radius: 50px !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.round-close-button-tip-error:hover {
+  background: #d03c3c !important;
+  box-shadow: none;
+  border: none;
+}
+
+.round-close-button-tip-error:focus {
+  background: #d04848 !important;
+  box-shadow: none;
+  border: none;
+}
+
+/*warning*/
+.round-close-button-tip-warning {
+    padding: 10px 10px !important;
+    margin-right: 5px !important;
+    -moz-border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    border-radius: 50px !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.round-close-button-tip-warning:hover {
+  background: #fbab2b !important;
+  box-shadow: none;
+  border: none;
+}
+
+.round-close-button-tip-warning:focus {
+  background: #f9b13e !important;
+  box-shadow: none;
+  border: none;
+}
+
+/*success*/
+.round-close-button-tip-success {
+    padding: 10px 10px !important;
+    margin-right: 5px !important;
+    -moz-border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    border-radius: 50px !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.round-close-button-tip-success:hover {
+  background: #52a953 !important;
+  box-shadow: none;
+  border: none;
+}
+
+.round-close-button-tip-success:focus {
+  background: #71bd72 !important;
+  box-shadow: none;
+  border: none;
+}
