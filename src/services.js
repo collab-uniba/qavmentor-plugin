@@ -11,11 +11,11 @@ var max_req = 100
 export function getPrediction(data,type) {
   var endpoint = '';
   if(type === 0 || type === 'RAW' || !type)
-    endpoint = '/getPredictionRaw';
+    endpoint = '/getPrediction/raw';
   if(type === 1 || type === 'DISCRETIZED')
     endpoint = '/getPredictionDiscretized';
   if(type === 2 || type === 'DISCRETIZED_BY_USER')
-    endpoint = '/getPredictionDiscretizedByUser';
+    endpoint = '/getPrediction/discretized';
 
   var req = axios.post(api_url+endpoint,data)
     .then( (response) => {

@@ -33,9 +33,15 @@ export function startAnalyzing() {
 
 export function countFoundTip(tip_list) {
   var count = 0;
+
   if(tip_list)
     for (var i = 0; i < tip_list.length; i++) {
-      if(tip_list[i].found === true){
+      var already_found = false;
+      for (var j = 0; j < i-1; j++) {
+        if(tip_list[j].index===tip_list[i].index)
+          already_found = true
+      }
+      if(tip_list[i].found === true && !already_found){
         count+=1;
       }
     }

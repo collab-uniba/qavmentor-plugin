@@ -14,8 +14,8 @@ import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles';
 
-import {getPost, startAnalyzing} from '../../utils'
-import {getPrediction} from '../../services';
+import {getPost, startAnalyzing, countFoundTip} from '../../utils'
+import {getPrediction, getTips} from '../../services';
 import Dashboard from './Dashboard/Dashboard.js'
 
 import './Tip.css';
@@ -56,14 +56,13 @@ const styles1 = theme => ({
 function MySnackbarContent(props) {
   const { classes, className, message, onClose, variant, action, ...other } = props;
   const Icon = variantIcon[variant];
-
+  //<Icon className={classNames(classes.icon, classes.iconVariant)} />
   return (
     <SnackbarContent
       className={classNames(classes[variant], className)}
       aria-describedby="client-snackbar"
       message={
-        <span id="client-snackbar" className={classes.message}>
-          <Icon className={classNames(classes.icon, classes.iconVariant)} />
+        <span id="client-snackbar" className={classes.message} style={{fontSize: '15px'}}>
           {message}
         </span>
       }
@@ -94,17 +93,13 @@ const styles2 = theme => ({
 
 const low_percentage = 20;
 const medium_percentage = 50;
-//const high_percentage = 50;
-const low_msg = "low";
-const medium_msg = "medium";
-const high_msg = "high";
-
 
 class Tip extends React.Component {
   state = {
     open: false,
     alert_type: "error",
-    dashboard_open: false
+    dashboard_open: false,
+    tag_focus: false
   };
 
 
@@ -120,6 +115,40 @@ class Tip extends React.Component {
     this.setState({dashboard_open: true, open: false});
   };
 
+  tick(){
+    getTips(getPost()).then(data => {
+      this.setState({"tips_count": countFoundTip(data)});
+    });
+    var tags = document.getElementsByClassName('tag-editor')[0].childNodes[1];
+      if(startAnalyzing()&&this.state.tag_focus&&!this.state.dashboard_open)
+      {
+        getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
+          if(data<low_percentage)
+            this.setState({alert_type: "error"})
+
+          if(data>=low_percentage && data<medium_percentage)
+            this.setState({alert_type: "warning"})
+
+          if(data>=medium_percentage)
+            this.setState({alert_type: "success"})
+
+          this.setState({open:true})
+          console.log('opening')
+
+        });
+
+      }else{
+        console.log('closing')
+        this.setState({open:false})
+      }
+
+    tags.onfocus = function(){
+      this.setState({tag_focus: true})
+      }.bind(this)
+    // tags.onblur = function(){
+    //   this.setState({tag_focus: false})
+    //   }.bind(this)
+  }
 
   render() {
     const { classes } = this.props;
@@ -137,11 +166,11 @@ class Tip extends React.Component {
           <MySnackbarContentWrapper
             onClose={this.handleClose}
             variant={this.state.alert_type}
-            message={this.state.msg}
+            message={"You have "+this.state.tips_count + " new tip(s)"}
             action={
               <button className={'round-close-button-tip-'+this.state.alert_type}
                       onClick={this.openDashboard}>
-                  Go to Dashboard
+                  Show
               </button>
             }
           />
@@ -151,104 +180,15 @@ class Tip extends React.Component {
     );
   }
 
+
   componentDidMount() {
+      this.interval = setInterval(() => this.tick(), 500);
+
       // var review = document.getElementsByClassName("js-wz-progress--active")[0];
       // if(review.innerHTML==="Review")
-      document.onclick = function()
-      {
-
-        if(startAnalyzing())
-        {
-          console.log('analyzing')
-          getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
-            if(data<low_percentage)
-              this.setState({msg: low_msg, alert_type: "error"})
-
-            if(data>=low_percentage && data<medium_percentage)
-              this.setState({msg: medium_msg, alert_type: "warning"})
-
-            if(data>=medium_percentage)
-              this.setState({msg: high_msg, alert_type: "success"})
-
-            this.setState({open:true})
-          });
-
-          window.onkeydown = function()
-          {
-
-            clearTimeout(this.timer);
-            this.timer = setTimeout(function()
-            {
-              getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
-                if(data<low_percentage)
-                  this.setState({msg: low_msg, alert_type: "error"})
-
-                if(data>=low_percentage && data<medium_percentage)
-                  this.setState({msg: medium_msg, alert_type: "warning"})
-
-                if(data>=medium_percentage)
-                  this.setState({msg: high_msg, alert_type: "success"})
-
-                this.setState({open:true})
-              });
-            }.bind(this), 1000)
-          }.bind(this)
-          if(this.state.dashboard_open===false)
-            this.setState({open:true})
-        }else{
-          this.setState({open:false})
-        }
-      }.bind(this)
 
 
-
-      document.onkeydown = function()
-      {
-
-        if(startAnalyzing())
-        {
-          console.log('analyzing')
-          getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
-            if(data<low_percentage)
-              this.setState({msg: low_msg, alert_type: "error"})
-
-            if(data>=low_percentage && data<medium_percentage)
-              this.setState({msg: medium_msg, alert_type: "warning"})
-
-            if(data>=medium_percentage)
-              this.setState({msg: high_msg, alert_type: "success"})
-
-            this.setState({open:true})
-          });
-
-          window.onkeydown = function()
-          {
-
-            clearTimeout(this.timer);
-            this.timer = setTimeout(function()
-            {
-              getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
-                if(data<low_percentage)
-                  this.setState({msg: low_msg, alert_type: "error"})
-
-                if(data>=low_percentage && data<medium_percentage)
-                  this.setState({msg: medium_msg, alert_type: "warning"})
-
-                if(data>=medium_percentage)
-                  this.setState({msg: high_msg, alert_type: "success"})
-
-                this.setState({open:true})
-              });
-            }.bind(this), 1000)
-          }.bind(this)
-          if(this.state.dashboard_open===false)
-            this.setState({open:true})
-        }else{
-          this.setState({open:false})
-        }
-      }.bind(this)
     }
-
 }
 
 

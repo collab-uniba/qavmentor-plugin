@@ -67,15 +67,25 @@ class TipList extends Component
     getTips(getPost()).then(data => {
       var new_list = [];
       for (var i = 0; i < data.length; i++) {
-        if(data[i].found === true)
+        var already_found = false;
+        for (var j = 0; j < new_list.length; j++) {
+          if(new_list[j].index===data[i].index)
+            already_found = true
+        }
+        if(!already_found && data[i].found === true)
         {
           new_list.push(data[i]);
         }
       }
-      for (var j = 0; j < data.length; j++) {
-        if(data[j].found === false)
+      for (var k = 0; k < data.length; k++) {
+        var already_found = false;
+        for (var l = 0; l < new_list.length; l++) {
+          if(new_list[l].index===data[k].index)
+            already_found = true
+        }
+        if(!already_found && data[k].found === false)
         {
-          new_list.push(data[j]);
+          new_list.push(data[k]);
         }
       }
       this.setState({
