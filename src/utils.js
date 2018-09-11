@@ -27,7 +27,7 @@ export function getPost(){
 
 export function startAnalyzing() {
   var post = getPost();
-  return (post.title.length!=0&&post.body.length!=0);
+  return (post.title.length!==0&&post.body.length!==0);
 }
 
 

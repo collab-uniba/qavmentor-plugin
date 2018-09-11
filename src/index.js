@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import {getSOUser} from './services.js';
+
 import App from './Components/App';
 import Popup from './Components/Popup/Popup';
 
+import {getSOUser} from './services.js';
 import store from './store'
+
+import './index.css';
 
 
 window.onload = function()
 {
   //loads the popup page
   try{
-      ReactDOM.render(<Popup/>, document.getElementById('root'));
+    ReactDOM.render(<Popup/>, document.getElementById('root'));
   }catch(Error){}
 
   //searches for the reputation value of the user and saves it to the store (global var)
@@ -30,7 +32,7 @@ window.onload = function()
         ReactDOM.render(<App/>, document.getElementById('qavmentor-root'));
     });
   }catch(Error){
-    console.log('You are not logged in the site')
+    alert("Your must be logged in to ask a question!");
   }
 
 }

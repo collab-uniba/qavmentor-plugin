@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const stackexchange_api = 'https://api.stackexchange.com/2.2/users/'
 const api_url = 'https://qavmentor.uniba.it'
-// const api_url = 'https://localhost:5000'
+
 var n_req_made = 0
 var max_req = 100
 
@@ -55,7 +55,6 @@ export function getSOUser(id) {
 export function getTips(data) {
   var req = axios.post(api_url+'/getTip',data)
     .then( (response) => {
-          console.log(response.data)
           return response.data
         })
     .catch( (error) => {
@@ -74,7 +73,7 @@ export function getTips(data) {
 export function getExplanation(about) {
   var req = axios.get(api_url+'/getExplanation/'+about)
     .then( (response) => {
-          return response.data //title, body
+          return response.data
         })
     .catch( (error) => {
       if(n_req_made < max_req)

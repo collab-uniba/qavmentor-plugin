@@ -1,31 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '@material-ui/core/Button';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-import CloseIcon from '@material-ui/icons/Close';
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
-import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-import WarningIcon from '@material-ui/icons/Warning';
 import { withStyles } from '@material-ui/core/styles';
+
+import QuestionImprovementDialog from './QuestionImprovementDialog/QuestionImprovementDialog.js'
 
 import {getPost, startAnalyzing, countFoundTip} from '../../utils'
 import {getPrediction, getTips} from '../../services';
-import Dashboard from './Dashboard/Dashboard.js'
 
-import './Tip.css';
-
-const variantIcon = {
-  success: CheckCircleIcon,
-  warning: WarningIcon,
-  error: ErrorIcon,
-  info: InfoIcon,
-};
+import './PluginNotification.css';
 
 const styles1 = theme => ({
   success: {
@@ -55,8 +42,6 @@ const styles1 = theme => ({
 
 function MySnackbarContent(props) {
   const { classes, className, message, onClose, variant, action, ...other } = props;
-  const Icon = variantIcon[variant];
-  //<Icon className={classNames(classes.icon, classes.iconVariant)} />
   return (
     <SnackbarContent
       className={classNames(classes[variant], className)}
@@ -94,32 +79,34 @@ const styles2 = theme => ({
 const low_percentage = 20;
 const medium_percentage = 50;
 
-class Tip extends React.Component {
-  state = {
-    open: false,
-    alert_type: "error",
-    dashboard_open: false,
-    tag_focus: false
-  };
+class PluginNotification extends Component {
+  constructor()
+  {
+    super();
+    this.timer = null;
+
+    this.state = {
+      open: false,
+      alert_type: "error",
+      dashboard_open: false,
+      tag_focus: false
+    };
+  }
 
 
   handleClose = () => {
     this.setState({open: false});
   };
 
-  toggleDashboard = (on_off) => {
+  toggleQuestionImprovementDialog = (on_off) => {
     this.setState({dashboard_open: on_off, open:true });
   };
 
-  openDashboard = () => {
+  openQuestionImprovementDialog = () => {
     this.setState({dashboard_open: true, open: false});
   };
 
   tick(){
-    getTips(getPost()).then(data => {
-      this.setState({"tips_count": countFoundTip(data)});
-    });
-    var tags = document.getElementsByClassName('tag-editor')[0].childNodes[1];
       if(startAnalyzing()&&this.state.tag_focus&&!this.state.dashboard_open)
       {
         getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
@@ -133,26 +120,18 @@ class Tip extends React.Component {
             this.setState({alert_type: "success"})
 
           this.setState({open:true})
-          console.log('opening')
 
         });
-
+        getTips(getPost()).then(data => {
+          this.setState({"tips_count": countFoundTip(data)});
+        });
       }else{
-        console.log('closing')
         this.setState({open:false})
       }
-
-    tags.onfocus = function(){
-      this.setState({tag_focus: true})
-      }.bind(this)
-    // tags.onblur = function(){
-    //   this.setState({tag_focus: false})
-    //   }.bind(this)
   }
 
-  render() {
-    const { classes } = this.props;
 
+  render() {
     return (
       <React.Fragment>
         <Snackbar
@@ -169,33 +148,46 @@ class Tip extends React.Component {
             message={"You have "+this.state.tips_count + " new tip(s)"}
             action={
               <button className={'round-close-button-tip-'+this.state.alert_type}
-                      onClick={this.openDashboard}>
+                      onClick={this.openQuestionImprovementDialog}>
                   Show
               </button>
             }
           />
         </Snackbar>
-        <Dashboard open={this.state.dashboard_open} variant={this.state.alert_type} toggleDashboard={this.toggleDashboard.bind(this)}/>
+        <QuestionImprovementDialog open={this.state.dashboard_open} variant={this.state.alert_type} toggleQuestionImprovementDialog={this.toggleQuestionImprovementDialog.bind(this)}/>
      </React.Fragment>
     );
   }
 
 
   componentDidMount() {
-      this.interval = setInterval(() => this.tick(), 500);
+    var tags = document.getElementsByClassName('tag-editor')[0].childNodes[1];
 
-      // var review = document.getElementsByClassName("js-wz-progress--active")[0];
-      // if(review.innerHTML==="Review")
+    tags.onfocus = function()
+    {
+      this.setState({tag_focus: true})
+    }.bind(this)
 
+    window.onclick = function()
+    {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => this.tick(), 500);
 
-    }
+    }.bind(this)
+
+    window.onkeydown = function()
+    {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => this.tick(), 500);
+
+    }.bind(this)
+  }
 }
 
 
 
-
-Tip.propTypes = {
+PluginNotification.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles2)(Tip);
+export default withStyles(styles2)(PluginNotification);
