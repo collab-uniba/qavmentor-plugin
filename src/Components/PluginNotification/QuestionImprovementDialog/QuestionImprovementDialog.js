@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 
-import PluginPercentage from './PluginPercentage/PluginPercentage';
-import TipList from './TipList/TipList';
-import ExplanationDialog from './ExplanationDialog/ExplanationDialog';
-
-
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-
-
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -18,16 +11,18 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Grid from '@material-ui/core/Grid';
 
+import PluginPercentage from './PluginPercentage/PluginPercentage';
+import TipList from './TipList/TipList';
+import ExplanationDialog from './ExplanationDialog/ExplanationDialog';
 
-
-import './Dashboard.css';
+import './QuestionImprovementDialog.css';
 
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-class Dashboard extends Component
+class QuestionImprovementDialog extends Component
 {
   constructor(props)
   {
@@ -53,7 +48,7 @@ class Dashboard extends Component
 
   handleClose = () => {
     this.setState({ open: false});
-    this.props.toggleDashboard(false);
+    this.props.toggleQuestionImprovementDialog(false);
   };
 
 
@@ -117,9 +112,6 @@ class Dashboard extends Component
     return(dialog)
   }
 
-  componentDidMount() {
-  }
-
 };
 
-export default Dashboard;
+export default QuestionImprovementDialog;

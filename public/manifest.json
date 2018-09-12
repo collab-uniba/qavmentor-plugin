@@ -2,14 +2,11 @@
 {
   "manifest_version": 2,
   "name": "QAvMentor",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "Virtual mentor (Chrome) plugin for social Q&A sites, e.g. Stack Overflow",
   "browser_action": {
 	"default_popup": "index.html"
    },
-  "permissions": [
-    "https://stackoverflow.com/questions/ask*"
-  ],
   "content_scripts": [
     {
       "matches": ["https://stackoverflow.com/questions/ask*"],

@@ -4,6 +4,7 @@
 
 /*error*/
 .round-close-button-tip-error {
+    font-size: 15px;
     padding: 10px 10px !important;
     margin-right: 5px !important;
     -moz-border-radius: 50px !important;
@@ -28,6 +29,7 @@
 
 /*warning*/
 .round-close-button-tip-warning {
+    font-size: 15px;
     padding: 10px 10px !important;
     margin-right: 5px !important;
     -moz-border-radius: 50px !important;
@@ -52,6 +54,7 @@
 
 /*success*/
 .round-close-button-tip-success {
+    font-size: 15px;
     padding: 10px 10px !important;
     margin-right: 5px !important;
     -moz-border-radius: 50px !important;

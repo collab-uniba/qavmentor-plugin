@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
+import { Circle } from 'rc-progress';
+
 import { getPrediction } from '../../../../services';
 import { getPost } from '../../../../utils'
-import { Circle } from 'rc-progress';
 
 import './PluginPercentage.css';
 
@@ -17,10 +18,7 @@ class PluginPercentage extends Component
       "type": props.type,
       "marginLeft": props.marginLeft
     };
-
-
   }
-
 
   componentWillReceiveProps(newProps) {
       this.setState({type:newProps.type, marginLeft: newProps.marginLeft});
@@ -56,10 +54,6 @@ class PluginPercentage extends Component
   componentWillMount() {
       getPrediction(getPost(), this.state.type).then(data => { this.setState({prediction: data}) })
     }
-
-
-  componentWillUnmount(){
-  }
 
 }
 

@@ -6,13 +6,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
 import { Help } from '@material-ui/icons';
 
 import { getExplanation } from '../../../../services'
 
 import './ExplanationDialog.css';
-
 
 
 class ExplanationDialog extends Component
@@ -26,7 +24,6 @@ class ExplanationDialog extends Component
         title:'title',
         body:'body',
       }
-      console.log(this.state.about)
   };
 
 
@@ -70,11 +67,6 @@ class ExplanationDialog extends Component
 
   componentWillMount() {
     getExplanation(this.state.about).then(data => {this.setState({title:data.title, body:data.body})})
-  }
-
-
-  componentWillUnmount(){
-
   }
 
 }
