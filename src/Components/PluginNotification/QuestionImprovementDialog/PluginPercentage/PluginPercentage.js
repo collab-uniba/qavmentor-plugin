@@ -16,31 +16,32 @@ class PluginPercentage extends Component
     this.state = {
       "prediction": -1,
       "type": props.type,
-      "marginLeft": props.marginLeft
+      "marginLeft": props.marginLeft,
+      "color": props.color
     };
   }
 
   componentWillReceiveProps(newProps) {
-      this.setState({type:newProps.type, marginLeft: newProps.marginLeft});
+      this.setState({type:newProps.type, marginLeft: newProps.marginLeft, color: newProps.color});
   }
 
 
   render() {
-    const low_percentage = 20;
-    const medium_percentage = 50;
-    var color = '';
-    if(this.state.prediction > medium_percentage)
-      color = '#00A047';
-    if(this.state.prediction >= low_percentage && this.state.prediction < medium_percentage)
-      color = '#FF9A00';
-    if(this.state.prediction < low_percentage)
-      color = '#E41F2F';
+    // const low_percentage = 20;
+    // const medium_percentage = 50;
+    // var color = '';
+    // if(this.state.prediction > medium_percentage)
+    //   color = '#00A047';
+    // if(this.state.prediction >= low_percentage && this.state.prediction < medium_percentage)
+    //   color = '#FF9A00';
+    // if(this.state.prediction < low_percentage)
+    //   color = '#E41F2F';
 
 
     var percentage = (
         <div >
             <Circle percent={this.state.prediction} strokeWidth="5" trailWidth="5"
-             strokeColor={color} width={150} style={{marginLeft:this.state.marginLeft+'%'}}/>
+             strokeColor={this.state.color} width={150} style={{marginLeft:this.state.marginLeft+'%'}}/>
             <div className="percentage">{ this.state.prediction }%</div>
         </div>
 

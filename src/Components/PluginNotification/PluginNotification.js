@@ -76,8 +76,8 @@ const styles2 = theme => ({
 
 
 
-const low_percentage = 20;
-const medium_percentage = 50;
+// const low_percentage = 20;
+// const medium_percentage = 50;
 
 class PluginNotification extends Component {
   constructor()
@@ -87,7 +87,7 @@ class PluginNotification extends Component {
 
     this.state = {
       open: false,
-      alert_type: "error",
+      alert_type: "warning",
       dashboard_open: false,
       tag_focus: false
     };
@@ -109,20 +109,21 @@ class PluginNotification extends Component {
   tick(){
       if(startAnalyzing()&&this.state.tag_focus&&!this.state.dashboard_open)
       {
-        getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
-          if(data<low_percentage)
-            this.setState({alert_type: "error"})
-
-          if(data>=low_percentage && data<medium_percentage)
-            this.setState({alert_type: "warning"})
-
-          if(data>=medium_percentage)
-            this.setState({alert_type: "success"})
-
-          this.setState({open:true})
-
-        });
+        // getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
+        //   if(data<low_percentage)
+        //     this.setState({alert_type: "error"})
+        //
+        //   if(data>=low_percentage && data<medium_percentage)
+        //     this.setState({alert_type: "warning"})
+        //
+        //   if(data>=medium_percentage)
+        //     this.setState({alert_type: "success"})
+        //
+        //   this.setState({open:true})
+        //
+        // });
         getTips(getPost()).then(data => {
+          this.setState({open:true})
           this.setState({"tips_count": countFoundTip(data)});
         });
       }else{
@@ -172,14 +173,12 @@ class PluginNotification extends Component {
     {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => this.tick(), 500);
-
     }.bind(this)
 
     window.onkeydown = function()
     {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => this.tick(), 500);
-
     }.bind(this)
   }
 }
