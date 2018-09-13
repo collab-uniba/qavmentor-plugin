@@ -31,8 +31,6 @@ window.onload = function()
         body.appendChild(qavmentor_app);
         ReactDOM.render(<App/>, document.getElementById('qavmentor-root'));
     });
-  }catch(Error){
-    alert("Your must be logged in to ask a question!");
-  }
+  }catch(Error){ }
 
 }
