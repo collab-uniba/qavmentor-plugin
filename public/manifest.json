@@ -2,7 +2,7 @@
 {
   "manifest_version": 2,
   "name": "QAvMentor",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Virtual mentor (Chrome) plugin for social Q&A sites, e.g. Stack Overflow",
   "browser_action": {
 	"default_popup": "index.html"

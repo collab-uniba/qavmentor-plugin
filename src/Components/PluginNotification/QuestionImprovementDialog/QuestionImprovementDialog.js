@@ -55,9 +55,47 @@ class QuestionImprovementDialog extends Component
   render(){
     const raw_color = '#0077d2';
     const discretized_color = '#FF9A00';
-    var dialog
 
-    dialog = (
+    var dialog_content = (
+      <React.Fragment>
+        <Grid container alignContent={'space-between'} wrap='nowrap'>
+
+          <Grid item className={'circle-percentage'}>
+            <ExplanationDialog about={"percentage_improvements"}/>
+
+            <PluginPercentage type={'DISCRETIZED'} marginLeft={'8'} color={discretized_color}/>
+            <DialogContentText >
+              <Typography  align={'center'} style={{marginTop: '-15%'}}>
+                Closeness to maximum improvement
+              </Typography>
+            </DialogContentText>
+          </Grid>
+
+          <Grid item className={'circle-percentage'}>
+            <ExplanationDialog about={"probability_usefull_answer"}/>
+
+            <PluginPercentage type={'RAW'} marginLeft={'6'} color={raw_color}/>
+
+            <DialogContentText >
+              <Typography  align={'center'} style={{marginTop: '-15%'}} >
+                Probability of getting a useful answer
+              </Typography>
+            </DialogContentText>
+          </Grid>
+
+        </Grid>
+
+        <Typography variant="headline" align={'center'} gutterBottom>
+           Tips to improve your question
+        </Typography>
+        <Divider/>
+
+        <TipList/>
+      </React.Fragment>
+
+    )
+
+      var dialog = (
       <Dialog
        open={this.state.open} onClose={this.handleClose} TransitionComponent={Transition} >
 
@@ -73,39 +111,7 @@ class QuestionImprovementDialog extends Component
         </AppBar>
 
         <DialogContent className={'dialog-content'} >
-          <Grid container alignContent={'space-between'} wrap='nowrap'>
-
-            <Grid item className={'circle-percentage'}>
-              <ExplanationDialog about={"percentage_improvements"}/>
-
-              <PluginPercentage type={'DISCRETIZED_BY_USER'} marginLeft={'8'} color={discretized_color}/>
-              <DialogContentText >
-                <Typography  align={'center'} style={{marginTop: '-15%'}}>
-                  Closeness to maximum improvement
-                </Typography>
-              </DialogContentText>
-            </Grid>
-
-            <Grid item className={'circle-percentage'}>
-              <ExplanationDialog about={"probability_usefull_answer"}/>
-
-              <PluginPercentage type={'RAW'} marginLeft={'6'} color={raw_color}/>
-
-              <DialogContentText >
-                <Typography  align={'center'} style={{marginTop: '-15%'}} >
-                  Probability of getting a useful answer
-                </Typography>
-              </DialogContentText>
-            </Grid>
-
-          </Grid>
-
-          <Typography variant="headline" align={'center'} gutterBottom>
-             Tips to improve your question
-          </Typography>
-          <Divider/>
-
-          <TipList/>
+          {dialog_content}
         </DialogContent>
 
       </Dialog>

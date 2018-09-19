@@ -13,8 +13,6 @@ export function getPrediction(data,type) {
   if(type === 0 || type === 'RAW' || !type)
     endpoint = '/getPrediction/raw';
   if(type === 1 || type === 'DISCRETIZED')
-    endpoint = '/getPredictionDiscretized';
-  if(type === 2 || type === 'DISCRETIZED_BY_USER')
     endpoint = '/getPrediction/discretized';
 
   var req = axios.post(api_url+endpoint,data)

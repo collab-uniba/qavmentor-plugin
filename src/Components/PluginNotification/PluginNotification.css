@@ -29,6 +29,7 @@
 
 /*warning*/
 .round-close-button-tip-warning {
+    text-decoration: underline !important;
     font-size: 15px;
     padding: 10px 10px !important;
     margin-right: 5px !important;

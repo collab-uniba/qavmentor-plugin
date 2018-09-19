@@ -53,7 +53,8 @@ class PluginPercentage extends Component
 
 
   componentWillMount() {
-      getPrediction(getPost(), this.state.type).then(data => { this.setState({prediction: data}) })
+      getPrediction(getPost(), this.state.type)
+      .then(data => { this.setState({prediction: data}) })
     }
 
 }

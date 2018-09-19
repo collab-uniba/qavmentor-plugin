@@ -76,14 +76,12 @@ const styles2 = theme => ({
 
 
 
-// const low_percentage = 20;
-// const medium_percentage = 50;
-
 class PluginNotification extends Component {
   constructor()
   {
     super();
-    this.timer = null;
+    this.timer_click = null;
+    this.timer_keys = null;
 
     this.state = {
       open: false,
@@ -93,10 +91,6 @@ class PluginNotification extends Component {
     };
   }
 
-
-  handleClose = () => {
-    this.setState({open: false});
-  };
 
   toggleQuestionImprovementDialog = (on_off) => {
     this.setState({dashboard_open: on_off, open:true });
@@ -109,19 +103,6 @@ class PluginNotification extends Component {
   tick(){
       if(startAnalyzing()&&this.state.tag_focus&&!this.state.dashboard_open)
       {
-        // getPrediction(getPost(), 'DISCRETIZED_BY_USER').then(data => {
-        //   if(data<low_percentage)
-        //     this.setState({alert_type: "error"})
-        //
-        //   if(data>=low_percentage && data<medium_percentage)
-        //     this.setState({alert_type: "warning"})
-        //
-        //   if(data>=medium_percentage)
-        //     this.setState({alert_type: "success"})
-        //
-        //   this.setState({open:true})
-        //
-        // });
         getTips(getPost()).then(data => {
           this.setState({open:true})
           this.setState({"tips_count": countFoundTip(data)});
@@ -146,7 +127,7 @@ class PluginNotification extends Component {
           <MySnackbarContentWrapper
             onClose={this.handleClose}
             variant={this.state.alert_type}
-            message={"You have "+this.state.tips_count + " new tip(s)"}
+            message={this.state.tips_count>0 ? "You have "+this.state.tips_count + " new tip(s)" : "You don't have new tips to follow"}
             action={
               <button className={'round-close-button-tip-'+this.state.alert_type}
                       onClick={this.openQuestionImprovementDialog}>
@@ -171,14 +152,14 @@ class PluginNotification extends Component {
 
     window.onclick = function()
     {
-      clearTimeout(this.timer);
-      this.timer = setTimeout(() => this.tick(), 500);
+      clearTimeout(this.timer_click);
+      this.timer_click = setTimeout(() => this.tick(), 500);
     }.bind(this)
 
     window.onkeydown = function()
     {
-      clearTimeout(this.timer);
-      this.timer = setTimeout(() => this.tick(), 500);
+      clearTimeout(this.timer_keys);
+      this.timer_keys = setTimeout(() => this.tick(), 500);
     }.bind(this)
   }
 }

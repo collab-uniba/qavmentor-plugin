@@ -51,12 +51,12 @@ class ExplanationDialog extends Component
           <DialogTitle id="responsive-dialog-title">{this.state.title}</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              {this.state.body}
+              <div dangerouslySetInnerHTML={{ __html:this.state.body}}/>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
-              I understand
+              Ok
             </Button>
           </DialogActions>
         </Dialog>
@@ -66,7 +66,8 @@ class ExplanationDialog extends Component
 
 
   componentWillMount() {
-    getExplanation(this.state.about).then(data => {this.setState({title:data.title, body:data.body})})
+    getExplanation(this.state.about)
+      .then(data => {this.setState({title:data.title, body:data.body})})
   }
 
 }

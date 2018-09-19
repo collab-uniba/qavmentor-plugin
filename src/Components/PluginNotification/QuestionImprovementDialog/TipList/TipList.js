@@ -48,8 +48,7 @@ class TipList extends Component
                           <ListItemText primary={d.title} />
                        </ListItem>
                        <Divider/>
-                  </React.Fragment>
-                );
+                  </React.Fragment>);
            }
            })}
          </List>
@@ -91,7 +90,6 @@ class TipList extends Component
       })
     })
   }
-
 }
 
 
