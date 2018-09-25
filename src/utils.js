@@ -34,16 +34,21 @@ export function startAnalyzing() {
 export function countFoundTip(tip_list) {
   var count = 0;
 
-  if(tip_list)
-    for (var i = 0; i < tip_list.length; i++) {
-      var already_found = false;
-      for (var j = 0; j < i-1; j++) {
-        if(tip_list[j].index===tip_list[i].index)
-          already_found = true
-      }
-      if(tip_list[i].found === true && !already_found){
-        count+=1;
+  for (var i = 0; i < tip_list.length; i++) {
+    for (var j = i+1; j < tip_list.length; j++) {
+      if(tip_list[i].index === tip_list[j].index)
+      {
+        if(tip_list[j].found === true)
+          tip_list.splice(i, 1);
+        else
+          tip_list.splice(j, 1);
       }
     }
+  }
+  for (var k = 0; k < tip_list.length; k++) {
+    if(tip_list[k].found === true)
+      count+=1
+  }
+
   return count;
 }
