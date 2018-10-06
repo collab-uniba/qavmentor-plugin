@@ -7,6 +7,9 @@ import Popup from './Components/Popup/Popup';
 import {getSOUser} from './services.js';
 import store from './store'
 
+import {getPost} from './utils.js'
+import {savePost} from './services.js'
+
 import './index.css';
 
 
@@ -31,6 +34,20 @@ window.onload = function()
         body.appendChild(qavmentor_app);
         ReactDOM.render(<App/>, document.getElementById('qavmentor-root'));
     });
-  }catch(Error){ }
 
+    var submit_button = document.getElementById("submit-button");
+    submit_button.onclick = function()
+    {
+      var post = getPost();
+      post["user_id"] = usr_id;
+      window.onbeforeunload = function(){
+        savePost(post).then(response => {
+          console.log(response)
+        });
+      };
+
+    }
+
+
+  }catch(Error){ }
 }

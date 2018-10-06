@@ -83,3 +83,20 @@ export function getExplanation(about) {
   );
   return req
 }
+
+
+export function savePost(data) {
+  var req = axios.post(api_url+'/savePost',data)
+    .then( (response) => {
+          return response.data
+        })
+    .catch( (error) => {
+      if(n_req_made < max_req)
+      {
+        n_req_made += 1
+        savePost(data)
+      }else Promise.reject(error.response);
+    }
+  );
+  return req
+}
