@@ -8,7 +8,7 @@ import {getSOUser} from './services.js';
 import store from './store'
 
 import {getPost} from './utils.js'
-import {savePost} from './services.js'
+import {savePost, getQuestionID} from './services.js'
 
 import './index.css';
 
@@ -41,9 +41,19 @@ window.onload = function()
       var post = getPost();
       post["user_id"] = usr_id;
       window.onbeforeunload = function(){
-        savePost(post).then(response => {
-          console.log(response)
-        });
+          getQuestionID("1507139").then(lastQ => {
+            if (lastQ["items"].length > 0){
+              var last_post = lastQ["items"][0];
+              if(last_post["post_type"] === "question"){
+                post["question_id"] = last_post["post_id"];
+                savePost(post).then(response => {
+
+                });
+              }
+
+            }
+
+          })
       };
 
     }
