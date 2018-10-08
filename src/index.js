@@ -41,19 +41,19 @@ window.onload = function()
       var post = getPost();
       post["user_id"] = usr_id;
       window.onbeforeunload = function(){
-          getQuestionID(usr_id).then(lastQ => {
-            if (lastQ["items"].length > 0){
-              var last_post = lastQ["items"][0];
-              if(last_post["post_type"] === "question"){
-                post["question_id"] = last_post["post_id"];
+          // getQuestionID(usr_id).then(lastQ => {
+          //   if (lastQ["items"].length > 0){
+          //     var last_post = lastQ["items"][0];
+          //     if(last_post["post_type"] === "question"){
+          //       post["question_id"] = last_post["post_id"];
                 savePost(post).then(response => {
 
                 });
-              }
+              //}
 
-            }
+            //}
 
-          })
+          //})
       };
 
     }
