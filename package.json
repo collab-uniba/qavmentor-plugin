@@ -55,12 +55,15 @@
     "webpack-dev-server": "2.9.4",
     "webpack-manifest-plugin": "1.3.2",
     "whatwg-fetch": "2.0.3",
-    "zip-folder": "^1.0.0"
+    "zip-folder": "^1.0.0",
+    "snyk": "^1.161.1"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -106,5 +109,6 @@
   },
   "devDependencies": {
     "grunt-webstore-upload": "^0.9.21"
-  }
+  },
+  "snyk": true
 }
